@@ -17,64 +17,68 @@
 package com.sahlbach.gradle.plugins.jetty9.internal;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
-import org.eclipse.jetty.webapp.Configuration;
-import org.eclipse.jetty.webapp.JettyWebXmlConfiguration;
-import org.eclipse.jetty.webapp.TagLibConfiguration;
-import org.eclipse.jetty.webapp.WebAppContext;
-import org.eclipse.jetty.webapp.WebInfConfiguration;
+import org.eclipse.jetty.webapp.*;
 
 /**
  * Jetty9PluginWebAppContext
  */
 public class JettyPluginWebAppContext extends WebAppContext {
     private List<File> classpathFiles;
-    private File jettyEnvXmlFile;
-    private File webXmlFile;
-    private WebInfConfiguration webInfConfig = new WebInfConfiguration();
-    private EnvConfiguration envConfig = new EnvConfiguration();
-    private JettyConfiguration mvnConfig = new JettyConfiguration();
-    private JettyWebXmlConfiguration jettyWebConfig = new JettyWebXmlConfiguration();
-    private TagLibConfiguration tagConfig = new TagLibConfiguration();
-    private Configuration[] configs = new Configuration[]{
-            webInfConfig, envConfig, mvnConfig, jettyWebConfig, tagConfig
-    };
+    private File       jettyEnvXmlFile;
+    private File       webXmlFile;
+    private WebXmlConfiguration      webXmlConfiguration = new WebXmlConfiguration();
+    private WebInfConfiguration      webInfConfig        = new WebInfConfiguration();
+    private EnvConfiguration         envConfig           = new EnvConfiguration();
+    private JettyConfiguration       jettyConfiguration  = new JettyConfiguration();
+    private JettyWebXmlConfiguration jettyWebConfig      = new JettyWebXmlConfiguration();
+    private TagLibConfiguration      tagConfig           = new TagLibConfiguration();
+    private Configuration[]          configs             = new Configuration[] {webXmlConfiguration,
+                                                                                webInfConfig,
+                                                                                envConfig,
+                                                                                jettyConfiguration,
+                                                                                jettyWebConfig,
+                                                                                tagConfig};
 
-    public JettyPluginWebAppContext() {
+    public JettyPluginWebAppContext () {
         super();
         setConfigurations(configs);
     }
 
-    public void setClassPathFiles(List<File> classpathFiles) {
+    public void setClassPathFiles (List<File> classpathFiles) {
         this.classpathFiles = classpathFiles;
     }
 
-    public List<File> getClassPathFiles() {
+    public List<File> getClassPathFiles () {
         return this.classpathFiles;
     }
 
-    public void setWebXmlFile(File webXmlFile) {
+    public void setWebXmlFile (File webXmlFile) {
         this.webXmlFile = webXmlFile;
     }
 
-    public File getWebXmlFile() {
+    public File getWebXmlFile () {
         return this.webXmlFile;
     }
 
-    public void setJettyEnvXmlFile(File jettyEnvXmlFile) {
+    public void setJettyEnvXmlFile (File jettyEnvXmlFile) {
         this.jettyEnvXmlFile = jettyEnvXmlFile;
     }
 
-    public File getJettyEnvXmlFile() {
+    public File getJettyEnvXmlFile () {
         return this.jettyEnvXmlFile;
     }
 
-    public void configure() {
+    public void configure () throws IOException {
+        if (webXmlFile != null)
+            setDescriptor(webXmlFile.getCanonicalPath());
         setConfigurations(configs);
-        mvnConfig.setClassPathConfiguration(classpathFiles);
-        mvnConfig.setWebXml(webXmlFile);
+
+        jettyConfiguration.setClassPathConfiguration(classpathFiles);
+        //        jettyConfiguration.setWebXml(webXmlFile);
         try {
             if (this.jettyEnvXmlFile != null) {
                 envConfig.setJettyEnvXml(this.jettyEnvXmlFile.toURI().toURL());
@@ -82,29 +86,6 @@ public class JettyPluginWebAppContext extends WebAppContext {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        /*
-        Configuration[] configurations = getConfigurations();
-        for (int i=0;i<configurations.length; i++)
-        {
-            if (configurations[i] instanceof JettyConfiguration)
-            {
-                ((JettyConfiguration)configurations[i]).setClassPathConfiguration (classpathFiles);
-                ((JettyConfiguration)configurations[i]).setWebXml (webXmlFile);
-            }
-            else if (configurations[i] instanceof EnvConfiguration)
-            {
-                try
-                {
-                    if (this.jettyEnvXmlFile != null)
-                        ((EnvConfiguration)configurations[i]).setJettyEnvXml(this.jettyEnvXmlFile.toURL());
-                }
-                catch (Exception e)
-                {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        */
     }
 
     public void doStart() throws Exception {
