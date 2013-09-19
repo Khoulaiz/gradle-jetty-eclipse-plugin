@@ -24,12 +24,12 @@ import static org.gradle.util.Matchers.*
 import static org.hamcrest.Matchers.*
 import static org.junit.Assert.*
 
-public class JettyPluginTest {
+public class Jetty9PluginTest {
     private final Project project = TestUtil.createRootProject()
 
     @Test
     public void appliesWarPluginAndAddsConventionToProject() {
-        new JettyPlugin().apply(project)
+        new Jetty9Plugin().apply(project)
 
         assertTrue(project.getPlugins().hasPlugin(WarPlugin))
 
@@ -38,26 +38,26 @@ public class JettyPluginTest {
 
     @Test
     public void addsTasksToProject() {
-        new JettyPlugin().apply(project)
+        new Jetty9Plugin().apply(project)
 
-        def task = project.tasks[JettyPlugin.JETTY_RUN]
+        def task = project.tasks[Jetty9Plugin.JETTY_RUN]
         assertThat(task, instanceOf(JettyRun))
         assertThat(task, dependsOn(JavaPlugin.CLASSES_TASK_NAME))
         assertThat(task.httpPort, equalTo(project.httpPort))
 
-        task = project.tasks[JettyPlugin.JETTY_RUN_WAR]
+        task = project.tasks[Jetty9Plugin.JETTY_RUN_WAR]
         assertThat(task, instanceOf(JettyRunWar))
         assertThat(task, dependsOn(WarPlugin.WAR_TASK_NAME))
         assertThat(task.httpPort, equalTo(project.httpPort))
 
-        task = project.tasks[JettyPlugin.JETTY_STOP]
+        task = project.tasks[Jetty9Plugin.JETTY_STOP]
         assertThat(task, instanceOf(JettyStop))
         assertThat(task.stopPort, equalTo(project.stopPort))
     }
 
     @Test
     public void addsMappingToNewJettyTasks() {
-        new JettyPlugin().apply(project)
+        new Jetty9Plugin().apply(project)
 
         def task = project.tasks.create('customRun', JettyRun)
         assertThat(task, dependsOn(JavaPlugin.CLASSES_TASK_NAME))

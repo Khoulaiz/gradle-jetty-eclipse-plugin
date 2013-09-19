@@ -72,13 +72,17 @@ public class JettyPluginWebAppContext extends WebAppContext {
         return this.jettyEnvXmlFile;
     }
 
-    public void configure () throws IOException {
+    @Override
+    public void preConfigure () throws IOException {
         if (webXmlFile != null)
             setDescriptor(webXmlFile.getCanonicalPath());
-        setConfigurations(configs);
 
         jettyConfiguration.setClassPathConfiguration(classpathFiles);
         //        jettyConfiguration.setWebXml(webXmlFile);
+    }
+
+    @Override
+    public void configure () throws IOException {
         try {
             if (this.jettyEnvXmlFile != null) {
                 envConfig.setJettyEnvXml(this.jettyEnvXmlFile.toURI().toURL());

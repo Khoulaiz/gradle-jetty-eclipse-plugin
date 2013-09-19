@@ -32,7 +32,7 @@ import org.gradle.api.tasks.bundling.War;
  * <p>A {@link Plugin} which extends the {@link WarPlugin} to add tasks which run the web application using an embedded
  * Jetty web container.</p>
  */
-public class JettyPlugin implements Plugin<Project> {
+public class Jetty9Plugin implements Plugin<Project> {
     public static final String JETTY_RUN = "jettyRun";
     public static final String JETTY_RUN_WAR = "jettyRunWar";
     public static final String JETTY_STOP = "jettyStop";
