@@ -17,7 +17,6 @@
 package com.sahlbach.gradle.plugins.jetty9.internal;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
@@ -73,16 +72,21 @@ public class JettyPluginWebAppContext extends WebAppContext {
     }
 
     @Override
-    public void preConfigure () throws IOException {
+    public void preConfigure () throws Exception {
         if (webXmlFile != null)
             setDescriptor(webXmlFile.getCanonicalPath());
-
-        jettyConfiguration.setClassPathConfiguration(classpathFiles);
-        //        jettyConfiguration.setWebXml(webXmlFile);
+        StringBuilder extraClasspath = new StringBuilder();
+        for (File classpathFile : classpathFiles) {
+            if(extraClasspath.length() > 0)
+                extraClasspath.append(';');
+            extraClasspath.append(classpathFile.getCanonicalPath());
+        }
+        setExtraClasspath(extraClasspath.toString());
+        super.preConfigure();
     }
 
     @Override
-    public void configure () throws IOException {
+    public void configure () throws Exception {
         try {
             if (this.jettyEnvXmlFile != null) {
                 envConfig.setJettyEnvXml(this.jettyEnvXmlFile.toURI().toURL());
@@ -90,6 +94,7 @@ public class JettyPluginWebAppContext extends WebAppContext {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        super.configure();
     }
 
     public void doStart() throws Exception {

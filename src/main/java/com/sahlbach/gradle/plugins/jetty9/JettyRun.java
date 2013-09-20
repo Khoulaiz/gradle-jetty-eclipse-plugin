@@ -187,7 +187,7 @@ public class JettyRun extends AbstractJettyRunTask {
         }
         logger.info("Webapp directory = " + getWebAppSourceDirectory().getCanonicalPath());
 
-        getWebAppConfig().configure();
+        //getWebAppConfig().configure();
     }
 
     public void configureScanner() {
