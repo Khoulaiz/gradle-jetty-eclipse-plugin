@@ -19,7 +19,14 @@
       </profile>
     </annotationProcessing>
   </component>
-  <component name="CopyrightManager" default="">
+  <component name="CopyrightManager" default="Apache">
+    <copyright>
+      <option name="notice" value="Copyright 2012-&amp;#36;today.year the original author or authors.&#10;&#10;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#10;you may not use this file except in compliance with the License.&#10;You may obtain a copy of the License at&#10;&#10;      http://www.apache.org/licenses/LICENSE-2.0&#10;&#10;Unless required by applicable law or agreed to in writing, software&#10;distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#10;WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#10;See the License for the specific language governing permissions and&#10;limitations under the License." />
+      <option name="keyword" value="Copyright" />
+      <option name="allowReplaceKeyword" value="" />
+      <option name="myName" value="Apache" />
+      <option name="myLocal" value="true" />
+    </copyright>
     <module2copyright />
   </component>
   <component name="DependencyValidationManager">
@@ -34,7 +41,7 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="/opt/gradle-1.7" />
+        <option name="gradleHome" value="$USER_HOME$/.gvm/gradle/current" />
         <option name="useAutoImport" value="true" />
       </GradleProjectSettings>
     </option>
@@ -248,6 +255,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="libraryTable">
     <library name="42a25dc3219429f0e5d060061f71acb49bf010a0-hamcrest-core-1.3.jar-hamcrest-core-1.3">
@@ -259,9 +267,33 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="4e031bb61df09069aeb2bffb4019e7a5034a4ee0-junit-4.11.jar-junit-4.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="ant-1.8.4">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/ant-1.8.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="ant-1.9.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/ant-1.9.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/ant-1.9.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="ant-antlr-1.8.4">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/ant-antlr-1.8.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -269,6 +301,14 @@
     <library name="ant-antlr-1.9.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/ant-antlr-1.9.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/ant-antlr-1.9.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="ant-launcher-1.8.4">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/ant-launcher-1.8.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -276,6 +316,7 @@
     <library name="ant-launcher-1.9.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/ant-launcher-1.9.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/ant-launcher-1.9.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -283,6 +324,7 @@
     <library name="antlr-2.7.7">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/antlr-2.7.7.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/antlr-2.7.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -290,6 +332,7 @@
     <library name="asm-4.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/asm-4.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/asm-4.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -297,6 +340,7 @@
     <library name="asm-all-4.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/asm-all-4.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/asm-all-4.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -304,6 +348,7 @@
     <library name="bcpg-jdk15-1.46">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/bcpg-jdk15-1.46.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/bcpg-jdk15-1.46.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -311,6 +356,7 @@
     <library name="bcprov-jdk15-1.46">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/bcprov-jdk15-1.46.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/bcprov-jdk15-1.46.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -318,6 +364,7 @@
     <library name="bndlib-2.1.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/bndlib-2.1.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/bndlib-2.1.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -325,13 +372,24 @@
     <library name="bsh-2.0b4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/bsh-2.0b4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/bsh-2.0b4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="com.sun.el-2.2.0.v201303151357">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/com.sun.el/2.2.0.v201303151357/orbit/b22ba313b6dfabf10efff56a953ded1887c6cd2d/com.sun.el-2.2.0.v201303151357.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/com.sun.el/2.2.0.v201303151357/source/2fb9dcc43ce06dec1c140a7bc20e60cb311f0fe4/com.sun.el-2.2.0.v201303151357-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="commons-cli-1.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/commons-cli-1.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/commons-cli-1.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -339,6 +397,7 @@
     <library name="commons-codec-1.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/commons-codec-1.6.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/commons-codec-1.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -346,6 +405,7 @@
     <library name="commons-collections-3.2.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/commons-collections-3.2.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/commons-collections-3.2.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -353,6 +413,7 @@
     <library name="commons-io-1.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/commons-io-1.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/commons-io-1.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -360,6 +421,7 @@
     <library name="commons-lang-2.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/commons-lang-2.6.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/commons-lang-2.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -367,6 +429,7 @@
     <library name="core-3.1.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/core-3.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/core-3.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -374,6 +437,14 @@
     <library name="geronimo-annotation_1.0_spec-1.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/geronimo-annotation_1.0_spec-1.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/geronimo-annotation_1.0_spec-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-announce-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-announce-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -385,9 +456,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-announce-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-announce-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-antlr-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-antlr-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-antlr-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-antlr-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-antlr-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-antlr-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-base-services-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-base-services-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -399,9 +498,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-base-services-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-base-services-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-base-services-groovy-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-base-services-groovy-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-base-services-groovy-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/gradle-base-services-groovy-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-base-services-groovy-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-base-services-groovy-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-build-comparison-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-build-comparison-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -413,9 +540,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-build-comparison-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-build-comparison-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-build-setup-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-build-setup-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-build-setup-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-build-setup-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-build-setup-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-build-setup-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-cli-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-cli-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -427,9 +582,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-cli-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-cli-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-code-quality-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-code-quality-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-code-quality-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-code-quality-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-code-quality-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-code-quality-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-core-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-core-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -441,9 +624,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-core-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-core-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-core-impl-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-core-impl-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-core-impl-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-core-impl-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-core-impl-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-core-impl-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-cpp-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-cpp-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -455,9 +666,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-cpp-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-cpp-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-diagnostics-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-diagnostics-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-diagnostics-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-diagnostics-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-diagnostics-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-diagnostics-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-docs-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-docs-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -469,9 +708,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-docs-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-docs-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-ear-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-ear-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-ear-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-ear-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-ear-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-ear-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-ide-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-ide-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -483,9 +750,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-ide-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-ide-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-ivy-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-ivy-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-ivy-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-ivy-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-ivy-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-ivy-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-jacoco-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-jacoco-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -497,9 +792,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-jacoco-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-jacoco-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-javascript-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-javascript-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-javascript-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-javascript-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-javascript-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-javascript-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-jetty-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-jetty-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -511,9 +834,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-jetty-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-jetty-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-language-base-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-language-base-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-language-base-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-language-base-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-language-base-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-language-base-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-language-jvm-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-language-jvm-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -525,9 +876,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-language-jvm-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-language-jvm-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-maven-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-maven-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-maven-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-maven-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-maven-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-maven-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-messaging-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-messaging-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -539,9 +918,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-messaging-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-messaging-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-native-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-native-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-native-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/gradle-native-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-native-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-native-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-osgi-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-osgi-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -553,9 +960,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-osgi-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-osgi-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-plugins-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-plugins-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-plugins-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-plugins-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-plugins-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-plugins-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-publish-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-publish-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -567,9 +1002,30 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-publish-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-publish-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-reporting-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-reporting-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-reporting-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-reporting-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-reporting-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-reporting-1.8-rc-1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -581,9 +1037,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-resources-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-resources-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-scala-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-scala-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-scala-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-scala-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-scala-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-scala-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-signing-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-signing-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -595,9 +1079,37 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-signing-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-signing-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-sonar-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gradle-sonar-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-sonar-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gradle-sonar-1.8-20130830160653+0000.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-sonar-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/gradle-sonar-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-tooling-api-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-tooling-api-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -609,6 +1121,20 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-tooling-api-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-tooling-api-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-wrapper-1.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/gradle-wrapper-1.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="gradle-wrapper-1.8-20130830160653+0000">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/gradle-wrapper-1.8-20130830160653+0000.jar!/" />
@@ -616,9 +1142,17 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="gradle-wrapper-1.8-rc-1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/gradle-wrapper-1.8-rc-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="groovy-all-1.8.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/groovy-all-1.8.6.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/groovy-all-1.8.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -626,6 +1160,7 @@
     <library name="gson-2.2.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/gson-2.2.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/gson-2.2.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -633,6 +1168,7 @@
     <library name="guava-11.0.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/guava-11.0.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/guava-11.0.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -648,6 +1184,13 @@
     </library>
     <library name="hamcrest-core-1.3">
       <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/hamcrest-core-1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="hamcrest-core-1.3-sources.jar-hamcrest-core-1.3">
+      <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/jar/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
@@ -655,9 +1198,17 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="hamcrest-core-1.3.jar-hamcrest-core-1.3">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/hamcrest-core-1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="httpclient-4.2.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/httpclient-4.2.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/httpclient-4.2.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -665,6 +1216,7 @@
     <library name="httpcore-4.2.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/httpcore-4.2.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/httpcore-4.2.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -672,6 +1224,7 @@
     <library name="ivy-2.2.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/ivy-2.2.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/ivy-2.2.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -679,6 +1232,7 @@
     <library name="jansi-1.2.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jansi-1.2.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jansi-1.2.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -686,6 +1240,7 @@
     <library name="jarjar-1.3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jarjar-1.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jarjar-1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -693,6 +1248,7 @@
     <library name="jarjar-aether-api-1.13.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-aether-api-1.13.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-aether-api-1.13.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -700,6 +1256,7 @@
     <library name="jarjar-aether-impl-1.13.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-aether-impl-1.13.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-aether-impl-1.13.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -707,6 +1264,7 @@
     <library name="jarjar-aether-spi-1.13.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-aether-spi-1.13.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-aether-spi-1.13.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -714,6 +1272,7 @@
     <library name="jarjar-aether-util-1.13.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-aether-util-1.13.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-aether-util-1.13.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -721,6 +1280,7 @@
     <library name="jarjar-maven-aether-provider-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-aether-provider-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-aether-provider-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -728,6 +1288,7 @@
     <library name="jarjar-maven-artifact-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-artifact-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-artifact-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -735,6 +1296,7 @@
     <library name="jarjar-maven-compat-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-compat-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-compat-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -742,6 +1304,7 @@
     <library name="jarjar-maven-core-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-core-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-core-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -749,6 +1312,7 @@
     <library name="jarjar-maven-model-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-model-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-model-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -756,6 +1320,7 @@
     <library name="jarjar-maven-model-builder-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-model-builder-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-model-builder-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -763,6 +1328,7 @@
     <library name="jarjar-maven-plugin-api-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-plugin-api-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-plugin-api-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -770,6 +1336,7 @@
     <library name="jarjar-maven-repository-metadata-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-repository-metadata-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-repository-metadata-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -777,6 +1344,7 @@
     <library name="jarjar-maven-settings-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-settings-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-settings-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -784,6 +1352,7 @@
     <library name="jarjar-maven-settings-builder-3.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-maven-settings-builder-3.0.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-maven-settings-builder-3.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -791,6 +1360,7 @@
     <library name="jarjar-plexus-cipher-1.7">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-cipher-1.7.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-cipher-1.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -798,6 +1368,7 @@
     <library name="jarjar-plexus-classworlds-2.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-classworlds-2.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-classworlds-2.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -805,6 +1376,7 @@
     <library name="jarjar-plexus-component-annotations-1.5.5">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-component-annotations-1.5.5.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-component-annotations-1.5.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -812,6 +1384,7 @@
     <library name="jarjar-plexus-container-default-1.5.5">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-container-default-1.5.5.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-container-default-1.5.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -819,6 +1392,7 @@
     <library name="jarjar-plexus-interpolation-1.14">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-interpolation-1.14.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-interpolation-1.14.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -826,6 +1400,7 @@
     <library name="jarjar-plexus-sec-dispatcher-1.3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-sec-dispatcher-1.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-sec-dispatcher-1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -833,6 +1408,7 @@
     <library name="jarjar-plexus-utils-2.0.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-plexus-utils-2.0.6.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-plexus-utils-2.0.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -840,6 +1416,7 @@
     <library name="jarjar-wagon-provider-api-2.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jarjar-wagon-provider-api-2.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jarjar-wagon-provider-api-2.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -847,6 +1424,7 @@
     <library name="jatl-0.2.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jatl-0.2.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jatl-0.2.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -860,9 +1438,28 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.activation/1.1.0.v201105071233/source/350bd9b2a184ff0b1981809a299d9a663c2e9895/javax.activation-1.1.0.v201105071233-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="javax.annotation-1.1.0.v201108011116">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.annotation/1.1.0.v201108011116/orbit/964b4bd5e4f40d6497fd302e2e66c4a4257138b3/javax.annotation-1.1.0.v201108011116.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.annotation/1.1.0.v201108011116/source/374b74f795300b6ea4d9950589b80ddcac509d5b/javax.annotation-1.1.0.v201108011116-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="javax.el-2.2.0.v201303151357">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.el/2.2.0.v201303151357/orbit/571e2a15081c12e492e514111957a736b9b1d4b6/javax.el-2.2.0.v201303151357.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.el/2.2.0.v201303151357/source/21c782d3134e7422b18f6e76f2e34c7729aebd2a/javax.el-2.2.0.v201303151357-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="javax.inject-1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/javax.inject-1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/javax.inject-1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -885,6 +1482,24 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.servlet/3.0.0.v201112011016/source/15c914135cf30177b83c321250c458396289cd37/javax.servlet-3.0.0.v201112011016-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="javax.servlet.jsp-2.2.0.v201112011158">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.servlet.jsp/2.2.0.v201112011158/orbit/80b4ffe7c26ee97313bea2ddda5835fd38812ee4/javax.servlet.jsp-2.2.0.v201112011158.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.servlet.jsp/2.2.0.v201112011158/source/3d1e4ebc9b2c2b203dd9a471ba75a3ed8a28eccc/javax.servlet.jsp-2.2.0.v201112011158-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="javax.servlet.jsp.jstl-1.2.0.v201105211821">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.servlet.jsp.jstl/1.2.0.v201105211821/orbit/db594f1c8fc00d536f6d135bd7f8a9a99a6b8eea/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.servlet.jsp.jstl/1.2.0.v201105211821/source/3b9bbbf21e72c1e1feede7d74c4b9f619309713d/javax.servlet.jsp.jstl-1.2.0.v201105211821-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="javax.transaction-1.1.1.v201105210645">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/javax.transaction/1.1.1.v201105210645/orbit/68e61aa115bbff4e1e2ae4b16feb27d9f805eb6/javax.transaction-1.1.1.v201105210645.jar!/" />
@@ -897,6 +1512,7 @@
     <library name="jcifs-1.3.17">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jcifs-1.3.17.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jcifs-1.3.17.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -904,6 +1520,7 @@
     <library name="jcip-annotations-1.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jcip-annotations-1.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jcip-annotations-1.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -911,6 +1528,7 @@
     <library name="jcl-over-slf4j-1.7.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jcl-over-slf4j-1.7.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jcl-over-slf4j-1.7.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -918,6 +1536,7 @@
     <library name="jcommander-1.12">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jcommander-1.12.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jcommander-1.12.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -925,6 +1544,7 @@
     <library name="jetty-6.1.25">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jetty-6.1.25.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jetty-6.1.25.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -932,9 +1552,19 @@
     <library name="jetty-annotations-6.1.25">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jetty-annotations-6.1.25.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jetty-annotations-6.1.25.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+    </library>
+    <library name="jetty-annotations-9.0.5.v20130815">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty/jetty-annotations/9.0.5.v20130815/jar/42bac252ca1be9c06eb8cbe8bd60925f72d4953a/jetty-annotations-9.0.5.v20130815.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty/jetty-annotations/9.0.5.v20130815/source/7c57f1b761ea25d043187abf3d5aff20a173bb8f/jetty-annotations-9.0.5.v20130815-sources.jar!/" />
+      </SOURCES>
     </library>
     <library name="jetty-http-9.0.5.v20130815">
       <CLASSES>
@@ -963,9 +1593,19 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty/jetty-jndi/9.0.5.v20130815/source/2598edf004a5ff115bcf033799654653a3c93824/jetty-jndi-9.0.5.v20130815-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="jetty-jsp-9.0.5.v20130815">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty/jetty-jsp/9.0.5.v20130815/jar/b2bc990b1d09be30494704659358d090b352a75e/jetty-jsp-9.0.5.v20130815.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty/jetty-jsp/9.0.5.v20130815/source/3190630e7489ff67d3d20719beecb3b9931452cc/jetty-jsp-9.0.5.v20130815-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="jetty-naming-6.1.25">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jetty-naming-6.1.25.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jetty-naming-6.1.25.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -973,6 +1613,7 @@
     <library name="jetty-plus-6.1.25">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jetty-plus-6.1.25.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jetty-plus-6.1.25.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1016,6 +1657,7 @@
     <library name="jetty-util-6.1.25">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jetty-util-6.1.25.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jetty-util-6.1.25.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1050,6 +1692,7 @@
     <library name="jna-3.2.7">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jna-3.2.7.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jna-3.2.7.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1057,6 +1700,7 @@
     <library name="jna-posix-1.0.3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jna-posix-1.0.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jna-posix-1.0.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1064,6 +1708,7 @@
     <library name="jsch-0.1.46">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jsch-0.1.46.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jsch-0.1.46.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1071,6 +1716,7 @@
     <library name="jsp-2.1-6.1.14">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jsp-2.1-6.1.14.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1078,6 +1724,7 @@
     <library name="jsp-api-2.1-6.1.14">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/jsp-api-2.1-6.1.14.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1085,18 +1732,17 @@
     <library name="jul-to-slf4j-1.7.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/jul-to-slf4j-1.7.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/jul-to-slf4j-1.7.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
     </library>
     <library name="junit-4.11">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/junit-4.11.jar!/" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/" />
-      </SOURCES>
+      <SOURCES />
     </library>
     <library name="junit-4.11-sources.jar-junit-4.11">
       <CLASSES>
@@ -1117,6 +1763,7 @@
     <library name="kryo-2.20">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/kryo-2.20.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/kryo-2.20.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1124,6 +1771,7 @@
     <library name="log4j-over-slf4j-1.7.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/log4j-over-slf4j-1.7.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/log4j-over-slf4j-1.7.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1131,6 +1779,7 @@
     <library name="logback-classic-1.0.9">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/logback-classic-1.0.9.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/logback-classic-1.0.9.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1138,6 +1787,7 @@
     <library name="logback-core-1.0.9">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/logback-core-1.0.9.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/logback-core-1.0.9.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1145,6 +1795,7 @@
     <library name="maven-ant-tasks-2.1.3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/maven-ant-tasks-2.1.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/maven-ant-tasks-2.1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1152,6 +1803,7 @@
     <library name="minlog-1.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/minlog-1.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/minlog-1.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1159,6 +1811,7 @@
     <library name="native-platform-0.3-rc-2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/native-platform-0.3-rc-2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/native-platform-0.3-rc-2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1166,6 +1819,7 @@
     <library name="native-platform-linux-amd64-0.3-rc-2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/native-platform-linux-amd64-0.3-rc-2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/native-platform-linux-amd64-0.3-rc-2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1173,6 +1827,7 @@
     <library name="native-platform-linux-i386-0.3-rc-2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/native-platform-linux-i386-0.3-rc-2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/native-platform-linux-i386-0.3-rc-2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1180,6 +1835,7 @@
     <library name="native-platform-osx-universal-0.3-rc-2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/native-platform-osx-universal-0.3-rc-2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/native-platform-osx-universal-0.3-rc-2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1187,6 +1843,7 @@
     <library name="native-platform-windows-amd64-0.3-rc-2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/native-platform-windows-amd64-0.3-rc-2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/native-platform-windows-amd64-0.3-rc-2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1194,6 +1851,7 @@
     <library name="native-platform-windows-i386-0.3-rc-2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/native-platform-windows-i386-0.3-rc-2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/native-platform-windows-i386-0.3-rc-2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1201,6 +1859,7 @@
     <library name="nekohtml-1.9.14">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/nekohtml-1.9.14.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/nekohtml-1.9.14.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1208,13 +1867,51 @@
     <library name="objenesis-1.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/objenesis-1.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/objenesis-1.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="org.apache.jasper.glassfish-2.2.2.v201112011158">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.apache.jasper.glassfish/2.2.2.v201112011158/orbit/3945afe6a042228a92da320aec3fa1bc1308183b/org.apache.jasper.glassfish-2.2.2.v201112011158.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.apache.jasper.glassfish/2.2.2.v201112011158/source/87830aada7aa722d33067bba07a5e0f967875fde/org.apache.jasper.glassfish-2.2.2.v201112011158-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.apache.taglibs.standard.glassfish-1.2.0.v201112081803">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.apache.taglibs.standard.glassfish/1.2.0.v201112081803/orbit/2c4baa72af1d3aae3a1e029d4f8ca07498dabbe0/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.apache.taglibs.standard.glassfish/1.2.0.v201112081803/source/f2702e293dd0cd8879c42a2c079bb0bc542d4b52/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.eclipse.jdt.core-3.8.2.v20130121">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.eclipse.jdt.core/3.8.2.v20130121/orbit/ebb04771ae21dec8682e4153e97404d9933a9c13/org.eclipse.jdt.core-3.8.2.v20130121.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.eclipse.jdt.core/3.8.2.v20130121/source/add6b2dc7e55094f98db1c8b0decd91e2cbbd337/org.eclipse.jdt.core-3.8.2.v20130121-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.objectweb.asm-3.1.0.v200803061910">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.objectweb.asm/3.1.0.v200803061910/orbit/bf952ae43613f460f11ce5f8727cc9e4a7f8d33d/org.objectweb.asm-3.1.0.v200803061910.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.eclipse.jetty.orbit/org.objectweb.asm/3.1.0.v200803061910/source/bb8b0f120a53c9275cb2b684ccfc8762a2fc505a/org.objectweb.asm-3.1.0.v200803061910-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="plexus-component-annotations-1.5.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/plexus-component-annotations-1.5.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/plexus-component-annotations-1.5.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1226,9 +1923,17 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="plugins-junit-4.11.jar-junit-4.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/junit-4.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="pmaven-common-0.8-20100325">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/pmaven-common-0.8-20100325.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/pmaven-common-0.8-20100325.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1236,6 +1941,7 @@
     <library name="pmaven-groovy-0.8-20100325">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/pmaven-groovy-0.8-20100325.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/pmaven-groovy-0.8-20100325.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1243,6 +1949,7 @@
     <library name="reflectasm-1.07-shaded">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/reflectasm-1.07-shaded.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/reflectasm-1.07-shaded.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1250,6 +1957,7 @@
     <library name="rhino-1.7R3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/rhino-1.7R3.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/rhino-1.7R3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1257,6 +1965,7 @@
     <library name="servlet-api-2.5-20081211">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/servlet-api-2.5-20081211.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/servlet-api-2.5-20081211.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1264,6 +1973,7 @@
     <library name="simple-4.1.21">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/simple-4.1.21.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/simple-4.1.21.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1280,6 +1990,7 @@
     <library name="slf4j-api-1.7.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/slf4j-api-1.7.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/slf4j-api-1.7.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1287,6 +1998,7 @@
     <library name="snakeyaml-1.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/snakeyaml-1.6.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/snakeyaml-1.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1294,6 +2006,7 @@
     <library name="sonar-batch-bootstrapper-2.9">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/sonar-batch-bootstrapper-2.9.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/sonar-batch-bootstrapper-2.9.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1301,6 +2014,7 @@
     <library name="sonar-runner-2.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/sonar-runner-2.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/sonar-runner-2.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1308,6 +2022,7 @@
     <library name="testng-6.3.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/testng-6.3.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/testng-6.3.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1315,6 +2030,7 @@
     <library name="xbean-reflect-3.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/xbean-reflect-3.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/xbean-reflect-3.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1322,6 +2038,7 @@
     <library name="xercesImpl-2.9.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/xercesImpl-2.9.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/xercesImpl-2.9.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1329,6 +2046,7 @@
     <library name="xml-apis-1.3.04">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/plugins/xml-apis-1.3.04.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/xml-apis-1.3.04.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
