@@ -15,9 +15,6 @@
  */
 package com.sahlbach.gradle.plugins.jetty9;
 
-import java.io.File;
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -27,6 +24,9 @@ import org.gradle.api.plugins.WarPlugin;
 import org.gradle.api.plugins.WarPluginConvention;
 import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.bundling.War;
+
+import java.io.File;
+import java.util.concurrent.Callable;
 
 /**
  * <p>A {@link Plugin} which extends the {@link WarPlugin} to add tasks which run the web application using an embedded
@@ -42,17 +42,17 @@ public class Jetty9Plugin implements Plugin<Project> {
 
     public void apply(Project project) {
         project.getPlugins().apply(WarPlugin.class);
-        JettyPluginConvention jettyConvention = new JettyPluginConvention();
+        Jetty9PluginConvention jetty9Convention = new Jetty9PluginConvention();
         Convention convention = project.getConvention();
-        convention.getPlugins().put("jetty", jettyConvention);
+        convention.getPlugins().put("jetty9", jetty9Convention);
 
-        configureMappingRules(project, jettyConvention);
+        configureMappingRules(project, jetty9Convention);
         configureJettyRun(project);
         configureJettyRunWar(project);
-        configureJettyStop(project, jettyConvention);
+        configureJettyStop(project, jetty9Convention);
     }
 
-    private void configureMappingRules(final Project project, final JettyPluginConvention jettyConvention) {
+    private void configureMappingRules(final Project project, final Jetty9PluginConvention jettyConvention) {
         project.getTasks().withType(AbstractJettyRunTask.class, new Action<AbstractJettyRunTask>() {
             public void execute(AbstractJettyRunTask abstractJettyRunTask) {
                 configureAbstractJettyTask(project, jettyConvention, abstractJettyRunTask);
@@ -77,7 +77,7 @@ public class Jetty9Plugin implements Plugin<Project> {
         jettyRunWar.setGroup(WarPlugin.WEB_APP_GROUP);
     }
 
-    private void configureJettyStop(Project project, final JettyPluginConvention jettyConvention) {
+    private void configureJettyStop(Project project, final Jetty9PluginConvention jettyConvention) {
         JettyStop jettyStop = project.getTasks().create(JETTY_STOP, JettyStop.class);
         jettyStop.setDescription("Stops Jetty.");
         jettyStop.setGroup(WarPlugin.WEB_APP_GROUP);
@@ -130,7 +130,7 @@ public class Jetty9Plugin implements Plugin<Project> {
         return webXml;
     }
 
-    private void configureAbstractJettyTask(final Project project, final JettyPluginConvention jettyConvention, AbstractJettyRunTask jettyTask) {
+    private void configureAbstractJettyTask(final Project project, final Jetty9PluginConvention jettyConvention, AbstractJettyRunTask jettyTask) {
         jettyTask.setDaemon(false);
         jettyTask.setReload(RELOAD_AUTOMATIC);
         jettyTask.setScanIntervalSeconds(0);

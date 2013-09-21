@@ -243,6 +243,12 @@
       </item>
     </group>
   </component>
+  <component name="ProjectCodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value />
+    </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="MyStyle" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/gradle-jetty9-plugin.iml" filepath="$PROJECT_DIR$/gradle-jetty9-plugin.iml" />
@@ -1149,6 +1155,15 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="groovy-all-1.8.5">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.codehaus.groovy/groovy-all/1.8.5/jar/3be3914c49ca7d8e8afb29a7772a74c30a1f1b28/groovy-all-1.8.5.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.codehaus.groovy/groovy-all/1.8.5/source/1435cc8c90e3a91e5fee7bb53e83aad96e93aeb7/groovy-all-1.8.5-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="groovy-all-1.8.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-20130830160653+0000-bin/7q1mjbgb1ng2ak4vtoi1mna7s4/gradle-1.8-20130830160653+0000/lib/groovy-all-1.8.6.jar!/" />
@@ -1182,9 +1197,18 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/com.google.guava/guava/15.0/source/36b6a585c0f0c63bd85fb04db0dcb7b217298956/guava-15.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="hamcrest-core-1.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.2/jar/44d12ff84e43c7d0539131f75c92f2f88dba6549/hamcrest-core-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.2/source/e9be1c6a53b4d4e7564756e924a9fa8b1661ec6a/hamcrest-core-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="hamcrest-core-1.3">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/hamcrest-core-1.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/hamcrest-core-1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1739,7 +1763,7 @@
     </library>
     <library name="junit-4.11">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-1.8-rc-1-bin/7ik0kqapnnkia9k55rjrppr59m/gradle-1.8-rc-1/lib/plugins/junit-4.11.jar!/" />
+        <root url="jar://$USER_HOME$/.gvm/gradle/1.7/lib/plugins/junit-4.11.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1759,6 +1783,15 @@
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+    </library>
+    <library name="junit-dep-4.9">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/junit/junit-dep/4.9/jar/1013627e3993319870863a020034004717505815/junit-dep-4.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/junit/junit-dep/4.9/source/84b903feddab2bd58f5ab2fc0c5c636df42df74d/junit-dep-4.9-sources.jar!/" />
+      </SOURCES>
     </library>
     <library name="kryo-2.20">
       <CLASSES>
@@ -2018,6 +2051,15 @@
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+    </library>
+    <library name="spock-core-0.6-groovy-1.8">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.spockframework/spock-core/0.6-groovy-1.8/jar/5c1bfb5058c3659ddc206052601704ccd30133a5/spock-core-0.6-groovy-1.8.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.spockframework/spock-core/0.6-groovy-1.8/source/e86c73c53149bbd8a260f7a486c4d9667be5b9d2/spock-core-0.6-groovy-1.8-sources.jar!/" />
+      </SOURCES>
     </library>
     <library name="testng-6.3.1">
       <CLASSES>

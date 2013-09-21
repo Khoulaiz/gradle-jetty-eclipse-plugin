@@ -18,7 +18,7 @@ package com.sahlbach.gradle.plugins.jetty9;
 /**
  * Convention properties and methods added by the {@link org.gradle.api.plugins.jetty.JettyPlugin}.
  */
-public class JettyPluginConvention {
+public class Jetty9PluginConvention {
     private Integer stopPort;
     private String stopKey;
     private Integer httpPort = 8080;
