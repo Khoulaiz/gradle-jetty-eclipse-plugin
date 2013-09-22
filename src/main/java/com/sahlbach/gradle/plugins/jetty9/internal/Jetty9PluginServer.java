@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Jetty9PluginServer <p/> Jetty6 version of a wrapper for the Server class.
+ * Jetty9PluginServer <p/> Jetty9 version of a wrapper for the Server class.
  */
 public class Jetty9PluginServer implements JettyPluginServer {
     private static final Logger LOGGER = LoggerFactory.getLogger(Jetty9PluginServer.class);

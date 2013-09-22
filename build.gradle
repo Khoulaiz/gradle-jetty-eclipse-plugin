@@ -76,7 +76,7 @@ def pomConfig = {
         }
     }
     scm {
-        url "https://github.com/Khoulaiz/gradle-jetty9-plugin"
+        url "https://github.com/Khoulaiz/gradle-jetty-eclipse-plugin"
     }
     developers {
         developer {
@@ -96,8 +96,8 @@ publishing {
             pom.withXml {
                 def root = asNode()
                 root.with {
-                    appendNode('description', 'A Gradle Jetty plugin for Jetty 9')
-                    appendNode('url', 'https://github.com/Khoulaiz/gradle-jetty9-plugin')
+                    appendNode('description', 'A Gradle Jetty plugin for Eclipse Jetty')
+                    appendNode('url', 'https://github.com/Khoulaiz/gradle-jetty-eclipse-plugin')
                     appendNode('inceptionYear', '2013')
                 }
                 root.children().last() + pomConfig
@@ -115,7 +115,7 @@ bintray {
     publications = ['mavenJava']
     pkg {
         repo = 'gradle-plugins'
-        name = "gradle-jetty9-plugin"
+        name = "gradle-jetty-eclipse-plugin"
         licenses = ['Apache-2.0']
     }
 }
