@@ -103,7 +103,9 @@ public class Jetty9Plugin implements Plugin<Project> {
                 });
                 jettyRun.getConventionMapping().map("classpath", new Callable<Object>() {
                     public Object call() throws Exception {
-                        return getJavaConvention(project).getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME).getRuntimeClasspath();
+                        return getJavaConvention(project).getSourceSets()
+                            .getByName(SourceSet.MAIN_SOURCE_SET_NAME)
+                            .getRuntimeClasspath();
                     }
                 });
                 jettyRun.getConventionMapping().map("webAppSourceDirectory", new Callable<Object>() {
@@ -122,7 +124,7 @@ public class Jetty9Plugin implements Plugin<Project> {
     private Object getWebXml(Project project) {
         War war = (War) project.getTasks().getByName(WarPlugin.WAR_TASK_NAME);
         File webXml;
-        if (war.getWebXml() != null) {
+        if(war.getWebXml() != null) {
             webXml = war.getWebXml();
         } else {
             webXml = new File(getWarConvention(project).getWebAppDir(), "WEB-INF/web.xml");
@@ -130,7 +132,9 @@ public class Jetty9Plugin implements Plugin<Project> {
         return webXml;
     }
 
-    private void configureAbstractJettyTask(final Project project, final Jetty9PluginConvention jettyConvention, AbstractJettyRunTask jettyTask) {
+    private void configureAbstractJettyTask(final Project project,
+                                            final Jetty9PluginConvention jettyConvention,
+                                            AbstractJettyRunTask jettyTask) {
         jettyTask.setDaemon(false);
         jettyTask.setReload(RELOAD_AUTOMATIC);
         jettyTask.setScanIntervalSeconds(0);

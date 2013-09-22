@@ -16,35 +16,52 @@
 
 package com.sahlbach.gradle.plugins.jetty9.internal;
 
+import org.eclipse.jetty.annotations.AnnotationConfiguration;
+import org.eclipse.jetty.plus.webapp.EnvConfiguration;
+import org.eclipse.jetty.plus.webapp.PlusConfiguration;
+import org.eclipse.jetty.util.log.Log;
+import org.eclipse.jetty.util.log.Logger;
+import org.eclipse.jetty.webapp.*;
+
 import java.io.File;
 import java.util.List;
 
-import org.eclipse.jetty.plus.webapp.EnvConfiguration;
-import org.eclipse.jetty.webapp.*;
+import static java.util.Arrays.asList;
 
 /**
  * Jetty9PluginWebAppContext
  */
 public class JettyPluginWebAppContext extends WebAppContext {
+    private static final Logger LOG = Log.getLogger(WebAppContext.class);
     private List<File> classpathFiles;
     private File       jettyEnvXmlFile;
     private File       webXmlFile;
     private WebXmlConfiguration      webXmlConfiguration = new WebXmlConfiguration();
     private WebInfConfiguration      webInfConfig        = new WebInfConfiguration();
     private EnvConfiguration         envConfig           = new EnvConfiguration();
-    private JettyConfiguration       jettyConfiguration  = new JettyConfiguration();
+    private PlusConfiguration        plusConfiguration   = new PlusConfiguration();
     private JettyWebXmlConfiguration jettyWebConfig      = new JettyWebXmlConfiguration();
-    private TagLibConfiguration      tagConfig           = new TagLibConfiguration();
-    private Configuration[]          configs             = new Configuration[] {webXmlConfiguration,
-                                                                                webInfConfig,
-                                                                                envConfig,
-                                                                                jettyConfiguration,
-                                                                                jettyWebConfig,
-                                                                                tagConfig};
+    private List<AbstractConfiguration> configs          = asList(webXmlConfiguration,
+                                                                  webInfConfig,
+                                                                  envConfig,
+                                                                  plusConfiguration,
+                                                                  jettyWebConfig);
 
     public JettyPluginWebAppContext () {
         super();
-        setConfigurations(configs);
+        String v = System.getProperty("java.version");
+        String[] version = v.split("\\.");
+        if (version == null) {
+            LOG.info("Unable to determine jvm version, annotations will not be supported");
+        } else {
+            int major = Integer.parseInt(version[0]);
+            int minor = Integer.parseInt(version[1]);
+            if ((major >= 1) && (minor >= 5)) {
+                AbstractConfiguration annotationConfig = new AnnotationConfiguration();
+                configs.add(4,annotationConfig);
+            }
+        }
+        setConfigurations(configs.toArray(new Configuration[configs.size()]));
     }
 
     public void setClassPathFiles (List<File> classpathFiles) {

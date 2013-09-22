@@ -37,19 +37,32 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+compileJava {
+    // this is a pain in the neck on mac osx *sight*
+    // Apple put the rt.jar into a jar called classes.jar
+    // From 1.7 Oracle took over and the standard rt.jar is available
+    // please define the following entries in your gradle.properties file in ${user.home}/.gradle/gradle.properties
+    // examples from my mac
+    //
+    // jdk_1_6_home=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents
+    // jdk_1_6_bootClasspath=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar
+    //
+    // on a linux system this would be eg.
+    // jdk_1_6_home=/opt/java/64/jdk1.6.0_31
+    // jdk_1_6_bootClasspath=/opt/java/64/jdk1.6.0_31/jre/lib/rt.jar
+    def compatibilityVersion = 1.6
+    sourceCompatibility = compatibilityVersion
+    targetCompatibility = compatibilityVersion
+    if(project.hasProperty('jdk_1_6_bootClasspath'))
+        options.bootClasspath = "${jdk_1_6_bootClasspath}"
+    else if(project.hasProperty('jdk_1_6_home'))
+        options.bootClasspath = "${jdk_1_6_home}/jre/lib/rt.jar"
+    logger.info "Compiling using compatibility $compatibilityVersion and bootClasspath ${options.bootClasspath}"
+}
 
 repositories {
     mavenCentral()
     jcenter()
-//    bintray.repo(repoOwner: 'davidmc24', repoName: 'gradle-plugins') // Uses credentials from gradle.properties
-//    bintray.repo(repoOwner: 'WowCorp', repoName: 'AmazingSoftware') {
-//        credentials {
-//            username = 'joe'
-//            password = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef'
-//        }
-//    }
 }
 
 dependencies {
@@ -59,7 +72,7 @@ dependencies {
     compile     group: 'org.eclipse.jetty', name: 'jetty-webapp',version: v.jetty
     compile     group: 'org.eclipse.jetty', name: 'jetty-plus', version: v.jetty
     runtime     group: 'org.eclipse.jetty', name: 'jetty-jsp', version: v.jetty
-    runtime     group: 'org.eclipse.jetty', name: 'jetty-annotations', version: v.jetty
+    compile     group: 'org.eclipse.jetty', name: 'jetty-annotations', version: v.jetty
     testCompile group: 'org.spockframework', name: 'spock-core', version: v.spock
 }
 
@@ -111,6 +124,7 @@ publishing {
 
 bintray {
     user = 'khoulaiz'
+    // ${USER.HOME}/gradle.properties contains my secret entry bintray.key=...
     key = bintray.key
     publications = ['mavenJava']
     pkg {
