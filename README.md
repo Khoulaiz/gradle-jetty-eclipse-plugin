@@ -1,7 +1,7 @@
 gradle-jetty-eclipse-plugin
 ===========================
 
-Jetty Plugin for Eclipse Jetty
+Jetty Plugin for Jetty based on Eclipse packages
 
 This is work in progress. If it works, I will create a proper release and tell you how to use it. Stay tuned...
 

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9;
+package com.sahlbach.gradle.plugins.jettyEclipse;
 
-import com.sahlbach.gradle.plugins.jetty9.internal.Jetty9PluginServer;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyEclipsePluginServer;
 import org.eclipse.jetty.util.Scanner;
 import org.eclipse.jetty.xml.XmlConfiguration;
 import org.gradle.api.tasks.InputFile;
@@ -120,7 +120,7 @@ public class JettyRunWar extends AbstractJettyRunTask {
         xmlConfiguration.configure(getServer().getProxiedObject());
     }
 
-    public com.sahlbach.gradle.plugins.jetty9.internal.JettyPluginServer createServer() throws Exception {
-        return new Jetty9PluginServer();
+    public com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyPluginServer createServer() throws Exception {
+        return new JettyEclipsePluginServer();
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse.internal;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

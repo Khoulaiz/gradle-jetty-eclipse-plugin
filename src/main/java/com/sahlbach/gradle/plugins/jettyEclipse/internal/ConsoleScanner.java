@@ -17,9 +17,9 @@
 /**
  *
  */
-package com.sahlbach.gradle.plugins.jetty9.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse.internal;
 
-import com.sahlbach.gradle.plugins.jetty9.AbstractJettyRunTask;
+import com.sahlbach.gradle.plugins.jettyEclipse.AbstractJettyRunTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

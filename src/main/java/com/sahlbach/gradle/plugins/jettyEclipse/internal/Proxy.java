@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
+package com.sahlbach.gradle.plugins.jettyEclipse.internal;
+
 /**
- * The Jetty9 {@link org.gradle.api.Plugin} implementation.
+ * Proxy
+ *
+ * Provides untyped access to an object of a particular jetty version.
  */
-package com.sahlbach.gradle.plugins.jetty9;
+public interface Proxy {
+
+    public Object getProxiedObject();
+}

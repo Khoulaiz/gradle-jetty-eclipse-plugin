@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9;
+package com.sahlbach.gradle.plugins.jettyEclipse;
 
 import java.io.File;
 import java.net.URLClassLoader;
 import java.util.*;
 
-import com.sahlbach.gradle.plugins.jetty9.internal.ConsoleScanner;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.ConsoleScanner;
 import org.gradle.api.GradleException;
 import org.gradle.api.internal.ConventionTask;
-import com.sahlbach.gradle.plugins.jetty9.internal.JettyPluginServer;
-import com.sahlbach.gradle.plugins.jetty9.internal.JettyPluginWebAppContext;
-import com.sahlbach.gradle.plugins.jetty9.internal.Monitor;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyPluginServer;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyPluginWebAppContext;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.Monitor;
 import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.InputFiles;
 import org.gradle.api.tasks.Optional;

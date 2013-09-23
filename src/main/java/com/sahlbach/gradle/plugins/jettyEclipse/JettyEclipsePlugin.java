@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sahlbach.gradle.plugins.jetty9;
+package com.sahlbach.gradle.plugins.jettyEclipse;
+
+import java.io.File;
+import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -25,14 +28,11 @@ import org.gradle.api.plugins.WarPluginConvention;
 import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.bundling.War;
 
-import java.io.File;
-import java.util.concurrent.Callable;
-
 /**
  * <p>A {@link Plugin} which extends the {@link WarPlugin} to add tasks which run the web application using an embedded
  * Jetty web container.</p>
  */
-public class Jetty9Plugin implements Plugin<Project> {
+public class JettyEclipsePlugin implements Plugin<Project> {
     public static final String JETTY_RUN = "jettyRun";
     public static final String JETTY_RUN_WAR = "jettyRunWar";
     public static final String JETTY_STOP = "jettyStop";
@@ -42,17 +42,17 @@ public class Jetty9Plugin implements Plugin<Project> {
 
     public void apply(Project project) {
         project.getPlugins().apply(WarPlugin.class);
-        Jetty9PluginConvention jetty9Convention = new Jetty9PluginConvention();
+        JettyEclipsePluginConvention jettyEclipseConvention = new JettyEclipsePluginConvention();
         Convention convention = project.getConvention();
-        convention.getPlugins().put("jettyEclipse", jetty9Convention);
+        convention.getPlugins().put("jettyEclipse", jettyEclipseConvention);
 
-        configureMappingRules(project, jetty9Convention);
+        configureMappingRules(project, jettyEclipseConvention);
         configureJettyRun(project);
         configureJettyRunWar(project);
-        configureJettyStop(project, jetty9Convention);
+        configureJettyStop(project, jettyEclipseConvention);
     }
 
-    private void configureMappingRules(final Project project, final Jetty9PluginConvention jettyConvention) {
+    private void configureMappingRules(final Project project, final JettyEclipsePluginConvention jettyConvention) {
         project.getTasks().withType(AbstractJettyRunTask.class, new Action<AbstractJettyRunTask>() {
             public void execute(AbstractJettyRunTask abstractJettyRunTask) {
                 configureAbstractJettyTask(project, jettyConvention, abstractJettyRunTask);
@@ -77,7 +77,7 @@ public class Jetty9Plugin implements Plugin<Project> {
         jettyRunWar.setGroup(WarPlugin.WEB_APP_GROUP);
     }
 
-    private void configureJettyStop(Project project, final Jetty9PluginConvention jettyConvention) {
+    private void configureJettyStop(Project project, final JettyEclipsePluginConvention jettyConvention) {
         JettyStop jettyStop = project.getTasks().create(JETTY_STOP, JettyStop.class);
         jettyStop.setDescription("Stops Jetty.");
         jettyStop.setGroup(WarPlugin.WEB_APP_GROUP);
@@ -133,7 +133,7 @@ public class Jetty9Plugin implements Plugin<Project> {
     }
 
     private void configureAbstractJettyTask(final Project project,
-                                            final Jetty9PluginConvention jettyConvention,
+                                            final JettyEclipsePluginConvention jettyConvention,
                                             AbstractJettyRunTask jettyTask) {
         jettyTask.setDaemon(false);
         jettyTask.setReload(RELOAD_AUTOMATIC);

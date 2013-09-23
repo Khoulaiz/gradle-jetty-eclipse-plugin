@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sahlbach.gradle.plugins.jetty9;
+package com.sahlbach.gradle.plugins.jettyEclipse;
 
 /**
  * Convention properties and methods added by the {@link org.gradle.api.plugins.jetty.JettyPlugin}.
  */
-public class Jetty9PluginConvention {
+public class JettyEclipsePluginConvention {
     private Integer stopPort;
     private String stopKey;
     private Integer httpPort = 8080;

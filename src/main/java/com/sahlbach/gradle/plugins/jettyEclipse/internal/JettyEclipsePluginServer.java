@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse.internal;
 
 import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.eclipse.jetty.security.SecurityHandler;
@@ -29,10 +29,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Jetty9PluginServer <p/> Jetty9 version of a wrapper for the Server class.
+ * JettyEclipsePluginServer <p/> Jetty Eclipse version of a wrapper for the Server class.
  */
-public class Jetty9PluginServer implements JettyPluginServer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Jetty9PluginServer.class);
+public class JettyEclipsePluginServer implements JettyPluginServer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JettyEclipsePluginServer.class);
 
     public static final int DEFAULT_MAX_IDLE_TIME = 30000;
     private Server                   server;
@@ -43,7 +43,7 @@ public class Jetty9PluginServer implements JettyPluginServer {
 
     private RequestLog requestLog; //the particular request log implementation
 
-    public Jetty9PluginServer () {
+    public JettyEclipsePluginServer () {
         this.server = new Server();
         this.server.setStopAtShutdown(true);
         //make sure Jetty does not use URLConnection caches with the plugin
@@ -51,7 +51,7 @@ public class Jetty9PluginServer implements JettyPluginServer {
     }
 
     /**
-     * @see Jetty9PluginServer#setConnectors(Object[])
+     * @see JettyEclipsePluginServer#setConnectors(Object[])
      */
     public void setConnectors (Object[] connectors) {
         if (connectors == null || connectors.length == 0) {
@@ -121,7 +121,7 @@ public class Jetty9PluginServer implements JettyPluginServer {
     }
 
     /**
-     * @see Jetty9PluginServer#addWebApplication
+     * @see JettyEclipsePluginServer#addWebApplication
      */
     public void addWebApplication(WebAppContext webapp) throws Exception {
         contexts.addHandler(webapp);

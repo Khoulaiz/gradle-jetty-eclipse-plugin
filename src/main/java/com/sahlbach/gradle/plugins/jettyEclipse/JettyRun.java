@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9;
+package com.sahlbach.gradle.plugins.jettyEclipse;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-import com.sahlbach.gradle.plugins.jetty9.internal.Jetty9PluginServer;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyEclipsePluginServer;
 import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.file.ConfigurableFileTree;
 import org.gradle.api.file.FileCollection;
-import com.sahlbach.gradle.plugins.jetty9.internal.JettyPluginServer;
+import com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyPluginServer;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.InputFiles;
@@ -330,7 +330,7 @@ public class JettyRun extends AbstractJettyRunTask {
 
     public void finishConfigurationBeforeStart() throws Exception {
         Handler[] handlers = getConfiguredContextHandlers();
-        com.sahlbach.gradle.plugins.jetty9.internal.JettyPluginServer plugin = getServer();
+        com.sahlbach.gradle.plugins.jettyEclipse.internal.JettyPluginServer plugin = getServer();
         Server server = (Server) plugin.getProxiedObject();
 
         HandlerCollection contexts = (HandlerCollection) server.getChildHandlerByClass(ContextHandlerCollection.class);
@@ -354,7 +354,7 @@ public class JettyRun extends AbstractJettyRunTask {
     }
 
     public JettyPluginServer createServer() {
-        return new Jetty9PluginServer();
+        return new JettyEclipsePluginServer();
     }
 
     @InputFile

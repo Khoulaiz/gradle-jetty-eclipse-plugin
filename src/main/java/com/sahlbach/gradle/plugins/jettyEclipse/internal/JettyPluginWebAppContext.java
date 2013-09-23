@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse.internal;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jetty.annotations.AnnotationConfiguration;
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
@@ -23,12 +27,8 @@ import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.jetty.webapp.*;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Jetty9PluginWebAppContext
+ * JettyEclipsePluginWebAppContext
  */
 public class JettyPluginWebAppContext extends WebAppContext {
     private static final Logger LOG = Log.getLogger(WebAppContext.class);

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9
+package com.sahlbach.gradle.plugins.jettyEclipse
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.WarPlugin
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 
-class Jetty9PluginSpec extends Specification {
+class JettyEclipsePluginSpec extends Specification {
     Project project
 
     def setup() {
@@ -32,17 +32,17 @@ class Jetty9PluginSpec extends Specification {
         expect:
             !project.plugins.hasPlugin(WarPlugin)
         when:
-            project.apply plugin: Jetty9Plugin
+            project.apply plugin: JettyEclipsePlugin
         then:
             project.plugins.hasPlugin(WarPlugin)
-            project.convention.plugins.jettyEclipse instanceof Jetty9PluginConvention
+            project.convention.plugins.jettyEclipse instanceof JettyEclipsePluginConvention
     }
 
     def "Applies plugin and checks JettyRun task setup"() {
         when:
-            project.apply plugin: Jetty9Plugin
+            project.apply plugin: JettyEclipsePlugin
         then:
-            def task = project.tasks[Jetty9Plugin.JETTY_RUN]
+            def task = project.tasks[JettyEclipsePlugin.JETTY_RUN]
             task instanceof JettyRun
             task.httpPort == project.httpPort
             task.dependsOn(JavaPlugin.CLASSES_TASK_NAME)
@@ -50,9 +50,9 @@ class Jetty9PluginSpec extends Specification {
 
     def "Applies plugin and checks JettyRunWar task setup"() {
         when:
-            project.apply plugin: Jetty9Plugin
+            project.apply plugin: JettyEclipsePlugin
         then:
-            def task = project.tasks[Jetty9Plugin.JETTY_RUN_WAR]
+            def task = project.tasks[JettyEclipsePlugin.JETTY_RUN_WAR]
             task instanceof JettyRunWar
             task.httpPort == project.httpPort
             task.dependsOn(WarPlugin.WAR_TASK_NAME)
@@ -60,9 +60,9 @@ class Jetty9PluginSpec extends Specification {
 
     def "Applies plugin and checks JettyStop task setup"() {
         when:
-            project.apply plugin: Jetty9Plugin
+            project.apply plugin: JettyEclipsePlugin
         then:
-            def task = project.tasks[Jetty9Plugin.JETTY_STOP]
+            def task = project.tasks[JettyEclipsePlugin.JETTY_STOP]
             task instanceof JettyStop
             task.stopPort == project.stopPort
     }

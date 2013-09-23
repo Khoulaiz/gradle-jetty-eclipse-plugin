@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jetty9;
+package com.sahlbach.gradle.plugins.jettyEclipse;
 
 import java.io.File;
 import java.util.Collections;
