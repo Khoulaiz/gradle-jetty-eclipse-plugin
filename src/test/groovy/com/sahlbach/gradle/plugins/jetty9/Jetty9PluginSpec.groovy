@@ -35,7 +35,7 @@ class Jetty9PluginSpec extends Specification {
             project.apply plugin: Jetty9Plugin
         then:
             project.plugins.hasPlugin(WarPlugin)
-            project.convention.plugins.jetty instanceof Jetty9PluginConvention
+            project.convention.plugins.jettyEclipse instanceof Jetty9PluginConvention
     }
 
     def "Applies plugin and checks JettyRun task setup"() {

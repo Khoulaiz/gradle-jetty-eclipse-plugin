@@ -24,9 +24,8 @@ import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.jetty.webapp.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 /**
  * Jetty9PluginWebAppContext
@@ -41,11 +40,13 @@ public class JettyPluginWebAppContext extends WebAppContext {
     private EnvConfiguration         envConfig           = new EnvConfiguration();
     private PlusConfiguration        plusConfiguration   = new PlusConfiguration();
     private JettyWebXmlConfiguration jettyWebConfig      = new JettyWebXmlConfiguration();
-    private List<AbstractConfiguration> configs          = asList(webXmlConfiguration,
-                                                                  webInfConfig,
-                                                                  envConfig,
-                                                                  plusConfiguration,
-                                                                  jettyWebConfig);
+    private List<AbstractConfiguration> configs          = new ArrayList<AbstractConfiguration>() {{
+        add(webXmlConfiguration);
+        add(webInfConfig);
+        add(envConfig);
+        add(plusConfiguration);
+        add(jettyWebConfig);
+    }};
 
     public JettyPluginWebAppContext () {
         super();
@@ -93,12 +94,14 @@ public class JettyPluginWebAppContext extends WebAppContext {
         if (webXmlFile != null)
             setDescriptor(webXmlFile.getCanonicalPath());
         StringBuilder extraClasspath = new StringBuilder();
-        for (File classpathFile : classpathFiles) {
-            if(extraClasspath.length() > 0)
-                extraClasspath.append(';');
-            extraClasspath.append(classpathFile.getCanonicalPath());
+        if(classpathFiles != null) {
+            for (File classpathFile : classpathFiles) {
+                if(extraClasspath.length() > 0)
+                    extraClasspath.append(';');
+                extraClasspath.append(classpathFile.getCanonicalPath());
+            }
+            setExtraClasspath(extraClasspath.toString());
         }
-        setExtraClasspath(extraClasspath.toString());
         super.preConfigure();
     }
 

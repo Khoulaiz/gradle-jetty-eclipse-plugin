@@ -16,16 +16,16 @@
 
 package com.sahlbach.gradle.plugins.jetty9;
 
+import com.sahlbach.gradle.plugins.jetty9.internal.Jetty9PluginServer;
+import org.eclipse.jetty.util.Scanner;
+import org.eclipse.jetty.xml.XmlConfiguration;
+import org.gradle.api.tasks.InputFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sahlbach.gradle.plugins.jetty9.internal.Jetty9PluginServer;
-import org.gradle.api.tasks.InputFile;
-import org.eclipse.jetty.util.Scanner;
-import org.eclipse.jetty.xml.XmlConfiguration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <p>Deploys a WAR to an embedded Jetty web container.</p>
@@ -42,9 +42,8 @@ public class JettyRunWar extends AbstractJettyRunTask {
 
     public void configureWebApplication() throws Exception {
         super.configureWebApplication();
-
         getWebAppConfig().setWar(getWebApp().getCanonicalPath());
-        getWebAppConfig().configure();
+//        getWebAppConfig().configure();
     }
 
     public void validateConfiguration() {

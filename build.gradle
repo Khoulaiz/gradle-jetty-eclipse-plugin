@@ -125,7 +125,7 @@ publishing {
 bintray {
     user = 'khoulaiz'
     // ${USER.HOME}/gradle.properties contains my secret entry bintray.key=...
-    key = bintray.key
+    key = bintrayKey
     publications = ['mavenJava']
     pkg {
         repo = 'gradle-plugins'
