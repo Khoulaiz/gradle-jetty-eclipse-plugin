@@ -36,6 +36,7 @@ public class JettyEclipsePlugin implements Plugin<Project> {
     public static final String JETTY_RUN = "jettyRun";
     public static final String JETTY_RUN_WAR = "jettyRunWar";
     public static final String JETTY_STOP = "jettyStop";
+    public static final String JETTY_EXPLODED_WAR = "jettyExplodedWar";
 
     public static final String RELOAD_AUTOMATIC = "automatic";
     public static final String RELOAD_MANUAL = "manual";
@@ -50,6 +51,20 @@ public class JettyEclipsePlugin implements Plugin<Project> {
         configureJettyRun(project);
         configureJettyRunWar(project);
         configureJettyStop(project, jettyEclipseConvention);
+        configureJettyExplodedWar(project);
+    }
+
+    private void configureJettyExplodedWar (final Project project) {
+        project.getTasks().withType(JettyExplodedWar.class, new Action<JettyExplodedWar>() {
+            @Override
+            public void execute (final JettyExplodedWar jettyExplodedWar) {
+                jettyExplodedWar.with(((War)project.getTasks().getByName(WarPlugin.WAR_TASK_NAME)));
+            }
+        });
+        JettyExplodedWar jettyExplodedWar = project.getTasks().create(JETTY_EXPLODED_WAR, JettyExplodedWar.class);
+        jettyExplodedWar.into(project.getBuildDir()+"/jettyExplodedWar");
+        jettyExplodedWar.setDescription("Copies the sources of the war task into a dir");
+        jettyExplodedWar.setGroup(WarPlugin.WEB_APP_GROUP);
     }
 
     private void configureMappingRules(final Project project, final JettyEclipsePluginConvention jettyConvention) {
