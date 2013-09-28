@@ -31,7 +31,7 @@ class JettyEclipseTaskSpec extends Specification {
 
     def "Creates new custom JettyRun task"() {
         when:
-            project.tasks.create('customRun', JettyRun)
+            project.tasks.create('customRun', JettyEclipseStart)
         then:
             def task = project.tasks['customRun']
             task.dependsOn(JavaPlugin.CLASSES_TASK_NAME)

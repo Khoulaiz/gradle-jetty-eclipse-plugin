@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 the original author or authors.
+ * Coyright 2012-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-/**
- *
- */
-package com.sahlbach.gradle.plugins.jettyEclipse.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse
 
-import com.sahlbach.gradle.plugins.jettyEclipse.AbstractJettyRunTask;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-import java.io.IOException;
+class ConsoleScanner extends Thread{
+    private static Logger logger = LoggerFactory.getLogger(ConsoleScanner);
 
-public class ConsoleScanner extends Thread {
-    private static Logger logger = LoggerFactory.getLogger(ConsoleScanner.class);
+    private final JettyEclipseStart task;
 
-    private final AbstractJettyRunTask task;
-
-    public ConsoleScanner(AbstractJettyRunTask task) {
+    public ConsoleScanner(JettyEclipseStart task) {
         this.task = task;
-        setName("Console scanner");
-        setDaemon(true);
+        name = "Console scanner";
+        daemon = true;
     }
 
     public void run() {
@@ -47,9 +41,9 @@ public class ConsoleScanner extends Thread {
         }
     }
 
-    private void getSomeSleep() {
+    private static void getSomeSleep() {
         try {
-            Thread.sleep(500);
+            sleep(500);
         } catch (InterruptedException e) {
             logger.debug("Error while sleeping.", e);
         }
@@ -70,7 +64,7 @@ public class ConsoleScanner extends Thread {
     /**
      * Skip buffered bytes of system console.
      */
-    private void clearInputBuffer() {
+    private static void clearInputBuffer() {
         try {
             while (System.in.available() > 0) {
                 // System.in.skip doesn't work properly. I don't know why
@@ -96,4 +90,5 @@ public class ConsoleScanner extends Thread {
             logger.error("Error reconfiguring/restarting webapp after a new line on the console", e);
         }
     }
+
 }

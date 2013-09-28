@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 the original author or authors.
+ * Coyright 2012-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jettyEclipse.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-
-import org.eclipse.jetty.server.Server;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.eclipse.jetty.server.Server
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * Monitor <p/> Listens for stop commands eg via mvn jetty:stop and causes jetty to stop either by exiting the jvm, or
  * by stopping the Server instances. The choice of behaviour is controlled by either passing true (exit jvm) or false
  * (stop Servers) in the constructor.
  */
-public class Monitor extends Thread {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Monitor.class);
+class Monitor extends Thread {
+    private static final Logger logger = LoggerFactory.getLogger(Monitor.class);
 
     private String key;
-
-    ServerSocket serverSocket;
+    private ServerSocket serverSocket;
     private final Server server;
 
     public Monitor(int port, String key, Server server) throws IOException {
@@ -50,10 +42,10 @@ public class Monitor extends Thread {
         }
 
         this.key = key;
-        setDaemon(true);
-        setName("StopJettyPluginMonitor");
+        daemon = true;
+        name = "StopJettyPluginMonitor";
         serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"));
-        serverSocket.setReuseAddress(true);
+        serverSocket.reuseAddress = true;
     }
 
     public void run() {
@@ -62,7 +54,7 @@ public class Monitor extends Thread {
             try {
                 socket = serverSocket.accept();
                 socket.setSoLinger(false, 0);
-                LineNumberReader lin = new LineNumberReader(new InputStreamReader(socket.getInputStream()));
+                LineNumberReader lin = new LineNumberReader(new InputStreamReader(socket.inputStream));
 
                 String key = lin.readLine();
                 if (!this.key.equals(key)) {
@@ -73,44 +65,40 @@ public class Monitor extends Thread {
                     try {
                         socket.close();
                     } catch (Exception e) {
-                        LOGGER.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e);
                     }
                     try {
                         socket.close();
                     } catch (Exception e) {
-                        LOGGER.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e);
                     }
                     try {
                         serverSocket.close();
                     } catch (Exception e) {
-                        LOGGER.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e);
                     }
-
                     serverSocket = null;
-
                     try {
-                        LOGGER.info("Stopping server due to received '{}' command...", cmd);
+                        logger.info("Stopping server due to received '{}' command...", cmd);
                         server.stop();
                     } catch (Exception e) {
-                        LOGGER.error("Exception when stopping server", e);
+                        logger.error("Exception when stopping server", e);
                     }
-
                     //We've stopped the server. No point hanging around any more...
                     return;
                 } else {
-                    LOGGER.info("Unsupported monitor operation");
+                    logger.info("Unsupported monitor operation");
                 }
             } catch (Exception e) {
-                LOGGER.error("Exception during monitoring Server", e);
+                logger.error("Exception during monitoring Server", e);
             } finally {
                 if (socket != null) {
                     try {
                         socket.close();
                     } catch (Exception e) {
-                        LOGGER.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e);
                     }
                 }
-                socket = null;
             }
         }
     }

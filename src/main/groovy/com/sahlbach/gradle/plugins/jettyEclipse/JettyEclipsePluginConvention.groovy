@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 the original author or authors.
+ * Coyright 2012-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package com.sahlbach.gradle.plugins.jettyEclipse.internal;
+package com.sahlbach.gradle.plugins.jettyEclipse
 
-/**
- * Proxy
- *
- * Provides untyped access to an object of a particular jetty version.
- */
-public interface Proxy {
+class JettyEclipsePluginConvention {
+    static final String RELOAD_AUTOMATIC = "automatic";
+    static final String RELOAD_MANUAL = "manual";
 
-    public Object getProxiedObject();
+    Integer stopPort;
+    String  stopKey;
+    Integer httpPort = 8080;
+    Boolean daemon = false;
+    String  reload = RELOAD_AUTOMATIC;
+    Integer rebuildIntervalSeconds = 0;
 }
