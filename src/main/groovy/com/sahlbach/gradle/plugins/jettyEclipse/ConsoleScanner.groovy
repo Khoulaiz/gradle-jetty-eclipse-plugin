@@ -22,9 +22,9 @@ import org.slf4j.LoggerFactory
 class ConsoleScanner extends Thread{
     private static Logger logger = LoggerFactory.getLogger(ConsoleScanner);
 
-    private final JettyEclipseStart task;
+    private final JettyEclipseRun task;
 
-    public ConsoleScanner(JettyEclipseStart task) {
+    public ConsoleScanner(JettyEclipseRun task) {
         this.task = task;
         name = "Console scanner";
         daemon = true;

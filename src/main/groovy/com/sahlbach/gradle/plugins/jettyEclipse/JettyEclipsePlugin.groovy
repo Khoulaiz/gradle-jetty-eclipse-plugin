@@ -22,7 +22,7 @@ import org.gradle.api.plugins.WarPlugin
  * A {@link Plugin} to start an embedded eclipse jetty server
  */
 class JettyEclipsePlugin implements Plugin<Project> {
-    static final String JETTY_START = "jettyEclipseStart";
+    static final String JETTY_START = "jettyEclipseRun";
     static final String JETTY_STOP = "jettyEclipseStop";
 
     private Project project;
@@ -36,7 +36,7 @@ class JettyEclipsePlugin implements Plugin<Project> {
     }
 
     private void configureJettyStart () {
-        JettyEclipseStart jettyStart = project.tasks.create(JETTY_START, JettyEclipseStart);
+        JettyEclipseRun jettyStart = project.tasks.create(JETTY_START, JettyEclipseRun);
         jettyStart.description = "Deploys your war to an embedded jetty and allows easy rebuild and reload.";
         jettyStart.group = WarPlugin.WEB_APP_GROUP;
         jettyStart.dependsOn(WarPlugin.WAR_TASK_NAME);

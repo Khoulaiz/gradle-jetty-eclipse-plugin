@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory
  * <p> Once started, the web container can be configured to run continuously,
  * rebuilding periodically the war file and automatically performing a hot redeploy when necessary. </p>
  */
-class JettyEclipseStart extends ConventionTask {
-    private static Logger logger = LoggerFactory.getLogger(JettyEclipseStart);
+class JettyEclipseRun extends ConventionTask {
+    private static Logger logger = LoggerFactory.getLogger(JettyEclipseRun);
 
     static final String RELOAD_AUTOMATIC = "automatic";
     static final String RELOAD_MANUAL = "manual";
@@ -142,7 +142,7 @@ class JettyEclipseStart extends ConventionTask {
     void startJetty() {
         validateConfiguration();
         ProgressLoggerFactory progressLoggerFactory = services.get(ProgressLoggerFactory);
-        ProgressLogger progressLogger = progressLoggerFactory.newOperation(JettyEclipseStart);
+        ProgressLogger progressLogger = progressLoggerFactory.newOperation(JettyEclipseRun);
         progressLogger.description = "Start Jetty server";
         progressLogger.shortDescription = "Starting Jetty";
         progressLogger.started();
@@ -197,7 +197,7 @@ class JettyEclipseStart extends ConventionTask {
             progressLogger.completed();
         }
 
-        progressLogger = progressLoggerFactory.newOperation(JettyEclipseStart);
+        progressLogger = progressLoggerFactory.newOperation(JettyEclipseRun);
         progressLogger.description = "Run Jetty at http://localhost:${httpPort}${webAppConfig.contextPath}";
         progressLogger.shortDescription = "Running at http://localhost:${httpPort}${webAppConfig.contextPath}";
         progressLogger.started();

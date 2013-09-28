@@ -43,7 +43,7 @@ class JettyEclipsePluginSpec extends Specification {
             project.apply plugin: JettyEclipsePlugin
         then:
             def task = project.tasks[JettyEclipsePlugin.JETTY_START]
-            task instanceof JettyEclipseStart
+            task instanceof JettyEclipseRun
             task.httpPort == project.httpPort
             task.dependsOn(JavaPlugin.CLASSES_TASK_NAME)
     }

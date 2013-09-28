@@ -3,3 +3,4 @@ build
 *.iws
 .idea
 .java-version
+internal
