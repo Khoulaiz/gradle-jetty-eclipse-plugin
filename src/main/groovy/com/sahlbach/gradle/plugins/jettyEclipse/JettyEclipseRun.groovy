@@ -44,9 +44,6 @@ import org.slf4j.LoggerFactory
 class JettyEclipseRun extends ConventionTask implements BuildObserver {
     public static Logger logger = LoggerFactory.getLogger(JettyEclipseRun);
 
-    static final String RELOAD_AUTOMATIC = "automatic"
-    static final String RELOAD_MANUAL = "manual"
-
     private JettyEclipsePluginServer server
 
     /**
@@ -110,7 +107,7 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
 
     @Optional
     @Input
-    String reload = RELOAD_MANUAL;
+    boolean automaticReload = false;
 
     /**
      * A scanner to check ENTER hits on the console.
@@ -305,25 +302,25 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
      * Run a thread that monitors the console input to detect ENTER hits.
      */
     private void startConsoleScanner() {
-        if (RELOAD_MANUAL.equalsIgnoreCase(reload)) {
-            logger.info("Console reloading is ENABLED. Hit ENTER on the console to restart the context.")
+        if (!automaticReload) {
+            logger.warn("Console reloading is ENABLED. Hit ENTER on the console to reload the webapp.")
             consoleScanner = new ConsoleScanner(this)
             consoleScanner.start()
         }
     }
 
     public void reloadingWebApp () throws Exception {
-        logger.info("Restarting webapp ...")
+        logger.warn("Reloading webapp ...")
         if(rebuildTimerTask != null) {
             rebuildTimerTask.stop()
             rebuildTimerTask = null
         }
-        logger.debug("Stopping webapp ...")
+        logger.info("Stopping webapp ...")
         webAppContext.stop()
-        logger.debug("Reconfiguring webapp ...")
+        logger.info("Reconfiguring webapp ...")
         validateConfiguration()
         setupWarFromTask(webAppContext,warTask)
-        logger.debug("Restarting webapp ...")
+        logger.info("Restarting webapp ...")
         webAppContext.start()
         logger.info("Restart completed.")
     }
@@ -345,11 +342,11 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
     @Override
     void notifyBuildWithNewWar () {
         rebuildTimerTask.stop()
-        if(RELOAD_AUTOMATIC == reload) {
-            logger.warn("Background rebuild detected changes. Reloading webapp automatically as configured.")
+        if(automaticReload) {
+            logger.warn("---> Background rebuild detected changes. Reloading webapp automatically as configured.")
             reloadingWebApp()
         } else {
-            logger.warn("Background rebuild detected changes. Press ENTER to reload webapp.")
+            logger.warn("---> Background rebuild detected changes. Press ENTER to reload webapp.")
         }
     }
 

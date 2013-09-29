@@ -37,9 +37,9 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
- * Monitor <p/> Listens for stop commands eg via mvn jetty:stop and causes jetty to stop either by exiting the jvm, or
- * by stopping the Server instances. The choice of behaviour is controlled by either passing true (exit jvm) or false
- * (stop Servers) in the constructor.
+ * Monitor <p/> Listens for stop commands eg via gradle jettyEclipseStop and causes jetty to stop either by exiting
+ * the jvm or by stopping the Server instances. The choice of behaviour is controlled by either passing true (exit jvm)
+ * or false (stop Servers) in the constructor.
  */
 class Monitor extends Thread {
     private static final Logger logger = LoggerFactory.getLogger(Monitor.class);
@@ -59,7 +59,7 @@ class Monitor extends Thread {
 
         this.key = key
         daemon = true
-        name = "StopJettyPluginMonitor"
+        name = "JettyEclipseStopMonitor"
         serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"))
         serverSocket.reuseAddress = true
     }
