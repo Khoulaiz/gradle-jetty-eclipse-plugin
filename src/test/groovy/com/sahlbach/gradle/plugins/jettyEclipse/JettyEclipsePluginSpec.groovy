@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 the original author or authors.
+ * Coyright 2012-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ class JettyEclipsePluginSpec extends Specification {
         when:
             project.apply plugin: JettyEclipsePlugin
         then:
-            def task = project.tasks[JettyEclipsePlugin.JETTY_START]
+            def task = project.tasks[JettyEclipsePlugin.JETTY_ECLIPSE_START]
             task instanceof JettyEclipseRun
             task.httpPort == project.httpPort
             task.dependsOn(JavaPlugin.CLASSES_TASK_NAME)
@@ -62,7 +62,7 @@ class JettyEclipsePluginSpec extends Specification {
         when:
             project.apply plugin: JettyEclipsePlugin
         then:
-            def task = project.tasks[JettyEclipsePlugin.JETTY_STOP]
+            def task = project.tasks[JettyEclipsePlugin.JETTY_ECLIPSE_STOP]
             task instanceof JettyEclipseStop
             task.stopPort == project.stopPort
     }

@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
+/*
+ * Coyright 2012-2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.sahlbach.gradle.plugins.jettyEclipse
 
 import org.eclipse.jetty.server.Server
@@ -28,75 +44,75 @@ import org.slf4j.LoggerFactory
 class Monitor extends Thread {
     private static final Logger logger = LoggerFactory.getLogger(Monitor.class);
 
-    private String key;
-    private ServerSocket serverSocket;
-    private final Server server;
+    private String key
+    private ServerSocket serverSocket
+    private final Server server
 
     public Monitor(int port, String key, Server server) throws IOException {
-        this.server = server;
+        this.server = server
         if (port <= 0) {
-            throw new IllegalStateException("Bad stop port");
+            throw new IllegalStateException("Bad stop port")
         }
         if (key == null) {
-            throw new IllegalStateException("Bad stop key");
+            throw new IllegalStateException("Bad stop key")
         }
 
-        this.key = key;
-        daemon = true;
-        name = "StopJettyPluginMonitor";
-        serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"));
-        serverSocket.reuseAddress = true;
+        this.key = key
+        daemon = true
+        name = "StopJettyPluginMonitor"
+        serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"))
+        serverSocket.reuseAddress = true
     }
 
     public void run() {
         while (serverSocket != null) {
-            Socket socket = null;
+            Socket socket = null
             try {
-                socket = serverSocket.accept();
-                socket.setSoLinger(false, 0);
-                LineNumberReader lin = new LineNumberReader(new InputStreamReader(socket.inputStream));
+                socket = serverSocket.accept()
+                socket.setSoLinger(false, 0)
+                LineNumberReader lin = new LineNumberReader(new InputStreamReader(socket.inputStream))
 
-                String key = lin.readLine();
+                String key = lin.readLine()
                 if (!this.key.equals(key)) {
-                    continue;
+                    continue
                 }
-                String cmd = lin.readLine();
+                String cmd = lin.readLine()
                 if ("stop".equals(cmd)) {
                     try {
-                        socket.close();
+                        socket.close()
                     } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e)
                     }
                     try {
-                        socket.close();
+                        socket.close()
                     } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e)
                     }
                     try {
-                        serverSocket.close();
+                        serverSocket.close()
                     } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e)
                     }
-                    serverSocket = null;
+                    serverSocket = null
                     try {
-                        logger.info("Stopping server due to received '{}' command...", cmd);
-                        server.stop();
+                        logger.info("Stopping server due to received '{}' command...", cmd)
+                        server.stop()
                     } catch (Exception e) {
-                        logger.error("Exception when stopping server", e);
+                        logger.error("Exception when stopping server", e)
                     }
                     //We've stopped the server. No point hanging around any more...
-                    return;
+                    return
                 } else {
-                    logger.info("Unsupported monitor operation");
+                    logger.info("Unsupported monitor operation")
                 }
             } catch (Exception e) {
-                logger.error("Exception during monitoring Server", e);
+                logger.error("Exception during monitoring Server", e)
             } finally {
                 if (socket != null) {
                     try {
-                        socket.close();
+                        socket.close()
                     } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e);
+                        logger.debug("Exception when stopping server", e)
                     }
                 }
             }

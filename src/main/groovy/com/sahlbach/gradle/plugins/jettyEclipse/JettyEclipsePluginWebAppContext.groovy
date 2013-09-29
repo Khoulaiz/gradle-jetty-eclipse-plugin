@@ -1,3 +1,19 @@
+/*
+ * Coyright 2012-2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.sahlbach.gradle.plugins.jettyEclipse
 
 import org.eclipse.jetty.annotations.AnnotationConfiguration
@@ -22,59 +38,59 @@ class JettyEclipsePluginWebAppContext extends WebAppContext {
     private List<File> classpathFiles;
     private File       jettyEnvXmlFile;
     private File       webXmlFile;
-    private WebXmlConfiguration      webXmlConfiguration = new WebXmlConfiguration();
-    private WebInfConfiguration      webInfConfig        = new WebInfConfiguration();
-    private EnvConfiguration         envConfig           = new EnvConfiguration();
-    private PlusConfiguration        plusConfiguration   = new PlusConfiguration();
-    private JettyWebXmlConfiguration jettyWebConfig      = new JettyWebXmlConfiguration();
+    private WebXmlConfiguration      webXmlConfiguration = new WebXmlConfiguration()
+    private WebInfConfiguration      webInfConfig        = new WebInfConfiguration()
+    private EnvConfiguration         envConfig           = new EnvConfiguration()
+    private PlusConfiguration        plusConfiguration   = new PlusConfiguration()
+    private JettyWebXmlConfiguration jettyWebConfig      = new JettyWebXmlConfiguration()
     private List<AbstractConfiguration> configs          = [webXmlConfiguration,
-            webInfConfig,
-            envConfig,
-            plusConfiguration,
-            jettyWebConfig] as AbstractConfiguration[];
+                                                            webInfConfig,
+                                                            envConfig,
+                                                            plusConfiguration,
+                                                            jettyWebConfig] as AbstractConfiguration[]
 
     JettyEclipsePluginWebAppContext () {
         super();
-        String v = System.getProperty("java.version");
-        String[] version = v.split("\\.");
+        String v = System.getProperty("java.version")
+        String[] version = v.split("\\.")
         if (version == null) {
-            logger.info("Unable to determine jvm version, annotations will not be supported");
+            logger.info("Unable to determine jvm version, annotations will not be supported")
         } else {
-            int major = Integer.parseInt(version[0]);
-            int minor = Integer.parseInt(version[1]);
+            int major = Integer.parseInt(version[0])
+            int minor = Integer.parseInt(version[1])
             if ((major >= 1) && (minor >= 5)) {
-                AbstractConfiguration annotationConfig = new AnnotationConfiguration();
-                configs.add(4,annotationConfig);
+                AbstractConfiguration annotationConfig = new AnnotationConfiguration()
+                configs.add(4,annotationConfig)
             }
         }
-        configurations = configs.toArray(new Configuration[configs.size()]);
+        configurations = configs.toArray(new Configuration[configs.size()])
     }
 
     @Override
     void preConfigure () throws Exception {
         if (webXmlFile != null)
-            descriptor = webXmlFile.canonicalPath;
-        StringBuilder extraClasspath = new StringBuilder();
+            descriptor = webXmlFile.canonicalPath
+        StringBuilder extraClasspath = new StringBuilder()
         if(classpathFiles != null) {
             for (File classpathFile : classpathFiles) {
                 if(extraClasspath.length() > 0)
-                    extraClasspath.append(';');
-                extraClasspath.append(classpathFile.canonicalPath);
+                    extraClasspath.append(';')
+                extraClasspath.append(classpathFile.canonicalPath)
             }
-            setExtraClasspath(extraClasspath.toString());
+            setExtraClasspath(extraClasspath.toString())
         }
-        super.preConfigure();
+        super.preConfigure()
     }
 
     @Override
     public void configure () throws Exception {
         try {
             if (this.jettyEnvXmlFile != null) {
-                envConfig.jettyEnvXml = this.jettyEnvXmlFile.toURI().toURL();
+                envConfig.jettyEnvXml = this.jettyEnvXmlFile.toURI().toURL()
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e)
         }
-        super.configure();
+        super.configure()
     }
 }

@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-/**
- * The JettyEclipse {@link org.gradle.api.Plugin} implementation.
- */
-package com.sahlbach.gradle.plugins.jettyEclipse;
+package com.sahlbach.gradle.plugins.jettyEclipse
+
+public interface BuildObserver {
+    void notifyBuildFailure()
+
+    void notifyBuildWithNewWar()
+
+    void notifyBuildWithoutChanges()
+}
