@@ -1,5 +1,5 @@
 /*
- * Coyright 2012-2013 the original author or authors.
+ * Copyright 2012-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,6 @@ import org.eclipse.jetty.webapp.WebAppContext
 import org.eclipse.jetty.webapp.WebInfConfiguration
 import org.eclipse.jetty.webapp.WebXmlConfiguration
 
-/**
- * User: ace
- * Date: 27.09.13
- * Time: 01:58
- */
 class JettyEclipsePluginWebAppContext extends WebAppContext {
     private static final Logger logger = Log.getLogger(WebAppContext.class);
     private List<File> classpathFiles;
