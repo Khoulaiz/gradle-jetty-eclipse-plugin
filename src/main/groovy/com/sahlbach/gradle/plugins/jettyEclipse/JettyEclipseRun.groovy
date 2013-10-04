@@ -261,13 +261,13 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
 
     void startRebuildThread () {
         if(rebuildIntervalInSeconds > 0) {
-            rebuildTimerTask = new RebuildTimerTask(this, rebuildTask, rebuildIntervalInSeconds)
+            rebuildTimerTask = new RebuildTimerTask(this, rebuildTask, rebuildIntervalInSeconds, warFile)
         }
     }
 
     void startWatcherThread () {
         if(scanIntervalInSeconds > 0) {
-            fileWatcherTimerTask = new FileWatcherTimerTask(this, warFile, scanIntervalInSeconds)
+            fileWatcherTimerTask = new FileWatcherTimerTask(this, warFile, scanIntervalInSeconds, warFile)
         }
     }
 
@@ -309,12 +309,14 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
      * @return destination file
      */
     private void setupWar (JettyEclipsePluginWebAppContext webAppContext, File warFile) {
-        File destination = new File(project.buildDir, "tmp/${JettyEclipsePlugin.JETTY_ECLIPSE_PLUGIN}/war/")
-        destination.deleteDir()
-        destination.mkdirs()
-        destination = new File(destination, "${warFile.name}")
-        destination.bytes = warFile.bytes
-        webAppContext.war = destination.canonicalPath
+        synchronized (warFile) {
+            File destination = new File(project.buildDir, "tmp/${JettyEclipsePlugin.JETTY_ECLIPSE_PLUGIN}/war/")
+            destination.deleteDir()
+            destination.mkdirs()
+            destination = new File(destination, "${warFile.name}")
+            destination.bytes = warFile.bytes
+            webAppContext.war = destination.canonicalPath
+        }
     }
 
     /**
@@ -364,9 +366,9 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
     }
 
     public void reloadingWebApp () throws Exception {
+        logger.warn("Reloading webapp ...")
         consoleScanner.disabled = true
         try {
-            logger.warn("Reloading webapp ...")
             if(rebuildTimerTask != null) {
                 rebuildTimerTask.stop()
                 rebuildTimerTask = null

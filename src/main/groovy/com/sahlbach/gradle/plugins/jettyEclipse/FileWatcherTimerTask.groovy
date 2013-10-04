@@ -31,8 +31,10 @@ class FileWatcherTimerTask extends TimerTask {
     private Timer timer
     private FileChangeObserver observer
     private boolean readErrorReported = false
+    private final Object semaphore
 
-    FileWatcherTimerTask (FileChangeObserver observer, File file, int scanIntervalInSeconds) {
+    FileWatcherTimerTask (FileChangeObserver observer, File file, int scanIntervalInSeconds, Object semaphore) {
+        this.semaphore = semaphore
         this.observer = observer
         this.file = file
         this.lastModified = file.lastModified()
@@ -49,22 +51,24 @@ class FileWatcherTimerTask extends TimerTask {
     @Override
     public void run() {
         boolean changed = false
-        try {
-            if(!file.exists() || !file.canRead()) {
-                if(!readErrorReported) {
-                    observer.notifyFileReadError(file)
-                    readErrorReported = true
+        synchronized(semaphore) {
+            try {
+                if(!file.exists() || !file.canRead()) {
+                    if(!readErrorReported) {
+                        observer.notifyFileReadError(file)
+                        readErrorReported = true
+                    }
+                    lastModified = 0
+                } else {
+                    readErrorReported = false
+                    if(lastModified != file.lastModified()) {
+                        changed = true
+                        lastModified = file.lastModified()
+                    }
                 }
+            } catch (Exception e) {
                 lastModified = 0
-            } else {
-                readErrorReported = false
-                if(lastModified != file.lastModified()) {
-                    changed = true
-                    lastModified = file.lastModified()
-                }
             }
-        } catch (Exception e) {
-            lastModified = 0
         }
         if(changed) {
             observer.notifyFileChanged(file)

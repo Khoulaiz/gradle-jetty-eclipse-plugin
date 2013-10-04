@@ -31,9 +31,11 @@ class RebuildTimerTask extends TimerTask {
     private GradleConnector gradleConnector
     private Timer timer
     private BuildObserver observer
+    private final Object semaphore
 
-    RebuildTimerTask(BuildObserver observer, Task task, int rebuildIntervalInSeconds) {
+    RebuildTimerTask(BuildObserver observer, Task task, int rebuildIntervalInSeconds, Object semaphore) {
         this.observer = observer
+        this.semaphore = semaphore
         gradleConnector = GradleConnector.newConnector().forProjectDirectory(new File("."))
         this.task = task
         this.rebuildIntervalInSeconds = rebuildIntervalInSeconds
@@ -48,24 +50,26 @@ class RebuildTimerTask extends TimerTask {
 
     @Override
     public void run() {
-        ProjectConnection connection = gradleConnector.connect()
         boolean success = false
         boolean skipped = false
-        try {
-            ByteArrayOutputStream stdout = new ByteArrayOutputStream()
-            ByteArrayOutputStream stderr = new ByteArrayOutputStream()
-            BuildLauncher launcher = connection.newBuild().forTasks(task.path)
-            launcher.standardOutput = stdout
-            launcher.standardError = stderr
-            launcher.run()
-            String output = stdout.toString()
-            skipped = output =~ /$task.path UP-TO-DATE/
-            success = output =~ /BUILD SUCCESSFUL/
-        } catch (Exception e) {
-            success = false
-            logger.debug("Build ended with exception: "+e)
-        } finally {
-            connection.close()
+        synchronized(semaphore) {
+            ProjectConnection connection = gradleConnector.connect()
+            try {
+                ByteArrayOutputStream stdout = new ByteArrayOutputStream()
+                ByteArrayOutputStream stderr = new ByteArrayOutputStream()
+                BuildLauncher launcher = connection.newBuild().forTasks(task.path)
+                launcher.standardOutput = stdout
+                launcher.standardError = stderr
+                launcher.run()
+                String output = stdout.toString()
+                skipped = output =~ /$task.path UP-TO-DATE/
+                success = output =~ /BUILD SUCCESSFUL/
+            } catch (Exception e) {
+                success = false
+                logger.debug("Build ended with exception: "+e)
+            } finally {
+                connection.close()
+            }
         }
         if(success) {
             if(skipped) {
