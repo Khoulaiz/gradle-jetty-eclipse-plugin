@@ -15,20 +15,17 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
+
 import org.eclipse.jetty.security.LoginService
 import org.eclipse.jetty.server.Connector
 import org.eclipse.jetty.server.RequestLog
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.xml.XmlConfiguration
+import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Task
-import org.gradle.api.internal.ConventionTask
-import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.InputFile
-import org.gradle.api.tasks.InputFiles
-import org.gradle.api.tasks.Optional
-import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.*
 import org.gradle.api.tasks.bundling.War
 import org.gradle.internal.classpath.DefaultClassPath
 import org.gradle.logging.ProgressLogger
@@ -41,7 +38,7 @@ import org.slf4j.LoggerFactory
  * <p> Once started, the web container can be configured to run continuously,
  * rebuilding periodically the war file and automatically performing a hot redeploy when necessary. </p>
  */
-class JettyEclipseRun extends ConventionTask implements BuildObserver {
+class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeObserver {
     public static Logger logger = LoggerFactory.getLogger(JettyEclipseRun);
 
     private JettyEclipsePluginServer server
@@ -51,21 +48,29 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
      */
     Connector[] connectors
 
-    int httpPort = 8080
+    @Optional
+    @Input
+    Integer httpPort
 
     /**
      * The context path for the webapp.
      */
-    String contextPath = ""
+    @Optional
+    @Input
+    String contextPath
 
     /**
      * Port to listen to stop jetty on.
      */
-    int stopPort
+    @Optional
+    @Input
+    Integer stopPort
 
     /**
      * Key to provide when stopping jetty.
      */
+    @Optional
+    @Input
     String stopKey
 
     /**
@@ -76,11 +81,15 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
     /**
      * A webdefault.xml file to use instead of the default for the webapp. Optional.
      */
+    @Optional
+    @Input
     File webDefaultXml
 
     /**
      * A web.xml file to be applied AFTER the webapp's web.xml file. Useful for applying different build profiles, eg test, production etc. Optional.
      */
+    @Optional
+    @Input
     File overrideWebXml
 
     /**
@@ -88,44 +97,59 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
      * This is useful when starting the server with the intent to work with it interactively. </p><p> Often, it is desirable to let the server start and continue running subsequent processes in an
      * automated build environment. This can be facilitated by setting daemon to true. </p>
      */
-    boolean daemon = false
+    @Optional
+    @Input
+    Boolean daemon
 
     /**
      * should the plugin try gradle rebuilds after x seconds to detect changes? 0 == disabled
      */
-    int rebuildIntervalInSeconds = 0
+    @Optional
+    @Input
+    Integer rebuildIntervalInSeconds
 
     /**
      * Location of a jetty XML configuration file whose contents will be applied before any plugin configuration. Optional.
      */
-    private File jettyConfig
+    @Optional
+    @InputFile
+    File jettyConfig
+
+    @Optional
+    @Input
+    Boolean automaticReload;
+
+    @Optional
+    @Input
+    Integer scanIntervalInSeconds;
+
+    @Optional
+    @InputFiles
+    Iterable<File> additionalRuntimeJars = new ArrayList<File>()
 
     /**
      * The "virtual" webapp created by the plugin.
      */
     private JettyEclipsePluginWebAppContext webAppContext
 
-    @Optional
-    @Input
-    boolean automaticReload = false;
-
     /**
      * A scanner to check ENTER hits on the console.
      */
-    private Thread consoleScanner
+    private ConsoleScanner consoleScanner
 
     /**
-     * The war task we need to watch and get the output war
+     * The war file we use for the web app. We will watch this file but copy it for the server
      */
-    private War warTask
-
     @Optional
     @InputFile
-    File jettyConfig
+    File warFile
 
+    /**
+     * The task to build for the automatic rebuild
+     */
     @Optional
-    @InputFiles
-    private Iterable<File> additionalRuntimeJars = new ArrayList<File>()
+    @Input
+    Task rebuildTask
 
     /**
      * A RequestLog implementation to use for the webapp at runtime. Optional.
@@ -137,8 +161,14 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
      */
     private RebuildTimerTask rebuildTimerTask
 
+    /**
+     * the timer task for scheduling file watching
+     */
+    private FileWatcherTimerTask fileWatcherTimerTask;
+
     @TaskAction
     protected void start() {
+        initFromExtension()
         ClassLoader originalClassloader = Server.classLoader
         List<File> additionalClasspath = new ArrayList<File>()
         for (File additionalRuntimeJar : additionalRuntimeJars) {
@@ -195,16 +225,19 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
                 return
             }
 
-            if (stopPort != null && stopPort > 0 && stopKey != null) {
-                Monitor monitor = new Monitor(stopPort, stopKey, (Server) server.proxiedObject)
-                monitor.start()
-            }
-
             // start the rebuild thread (if necessary)
             startRebuildThread()
 
-            // start the new line scanner thread if necessary
+            // start the file watcher thread (if necessary)
+            startWatcherThread()
+
+            // start the new line scanner thread
             startConsoleScanner()
+
+            if (stopPort > 0 && stopKey != null) {
+                Monitor monitor = new Monitor(stopPort, stopKey, (Server) server.proxiedObject)
+                monitor.start()
+            }
 
         } catch (Exception e) {
             throw new GradleException("Could not start the Jetty server.", e)
@@ -228,7 +261,13 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
 
     void startRebuildThread () {
         if(rebuildIntervalInSeconds > 0) {
-            rebuildTimerTask = new RebuildTimerTask(this, warTask,rebuildIntervalInSeconds)
+            rebuildTimerTask = new RebuildTimerTask(this, rebuildTask, rebuildIntervalInSeconds)
+        }
+    }
+
+    void startWatcherThread () {
+        if(scanIntervalInSeconds > 0) {
+            fileWatcherTimerTask = new FileWatcherTimerTask(this, warFile, scanIntervalInSeconds)
         }
     }
 
@@ -252,7 +291,7 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
         webAppContext.systemClasses = systemClasses.toArray(new String[systemClasses.size()])
         webAppContext.parentLoaderPriority = false
 
-        setupWarFromTask(webAppContext, warTask)
+        setupWar(webAppContext, warFile)
 
         logger.info("War file = " + webAppContext.war)
         logger.info("Context path = " + webAppContext.contextPath)
@@ -265,64 +304,85 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
 
     /**
      * Copy the war file to a temp location and use it as webapp war
-     * @param warTask to grab war from
+     * @param webAppContext webapp to configure
+     * @param warFile file to use as webApp
      * @return destination file
      */
-    private void setupWarFromTask (JettyEclipsePluginWebAppContext webAppContext, War warTask) {
+    private void setupWar (JettyEclipsePluginWebAppContext webAppContext, File warFile) {
         File destination = new File(project.buildDir, "tmp/${JettyEclipsePlugin.JETTY_ECLIPSE_PLUGIN}/war/")
         destination.deleteDir()
         destination.mkdirs()
-        destination = new File(destination, "${warTask.archiveName}")
-        destination.bytes = warTask.archivePath.bytes
+        destination = new File(destination, "${warFile.name}")
+        destination.bytes = warFile.bytes
         webAppContext.war = destination.canonicalPath
     }
 
     /**
-     * We need to be depending on a war task
+     * check for war file
+     * 1. check for war file path given by user
+     * 2. if not given by user, check for war task dependency and use the output war
+     * check for rebuilding request.
+     * 1. check for task given
+     * 2. if not given by user, check for war task dependency and use the task for rebuild
      */
     void validateConfiguration () {
-        warTask = null
-        def warTasks = project.tasks.withType(War)
-        for (dep in dependsOn) {
-            if(dep instanceof String) {
-                Task task = project.getTasksByName(dep,false).iterator().next()
-                if(warTasks.contains(task)) {
-                    warTask = task as War
+        if(warFile == null) {
+            // user gave no warfile, try to find one via dependencies
+            def warTasks = project.tasks.withType(War)
+            for (dep in dependsOn) {
+                if(dep instanceof String) {
+                    Task task = project.getTasksByName(dep,false).iterator().next()
+                    if(warTasks.contains(task)) {
+                        War warTask = task as War
+                        warFile = warTask.archivePath
+                        if (rebuildTask == null) {
+                            rebuildTask = warTask
+                        }
+                        break
+                    }
                 }
             }
         }
-        logger.debug("warTask used: $warTask")
-        if(warTask == null) {
-            throw new InvalidUserDataException("This task will work on the war output of a war task. Please make the" +
-                                               " task $name dependent on a war task")
+        if (warFile == null) {
+            throw new InvalidUserDataException("Please specify a warFile to use or make this task dependent " +
+                                               "of a war task which output will be used as war file")
         }
+        if(!warFile.exists() || !warFile.canRead()) {
+            throw new InvalidUserDataException("The specified war file $warFile.canonicalPath cannot be read.")
+        }
+        logger.debug("warFile used: $warFile.canonicalPath")
+        logger.debug("rebuildTask used: $rebuildTask")
     }
 
     /**
      * Run a thread that monitors the console input to detect ENTER hits.
      */
     private void startConsoleScanner() {
-        if (!automaticReload) {
-            logger.warn("Console reloading is ENABLED. Hit ENTER on the console to reload the webapp.")
-            consoleScanner = new ConsoleScanner(this)
-            consoleScanner.start()
-        }
+        logger.warn("Console reloading is ENABLED. Hit ENTER on the console to reload the webapp.")
+        consoleScanner = new ConsoleScanner(this)
+        consoleScanner.start()
     }
 
     public void reloadingWebApp () throws Exception {
-        logger.warn("Reloading webapp ...")
-        if(rebuildTimerTask != null) {
-            rebuildTimerTask.stop()
-            rebuildTimerTask = null
+        consoleScanner.disabled = true
+        try {
+            logger.warn("Reloading webapp ...")
+            if(rebuildTimerTask != null) {
+                rebuildTimerTask.stop()
+                rebuildTimerTask = null
+            }
+            logger.info("Stopping webapp ...")
+            webAppContext.stop()
+            logger.info("Reconfiguring webapp ...")
+            validateConfiguration()
+            setupWar(webAppContext,warFile)
+            logger.info("Restarting webapp ...")
+            webAppContext.start()
+            logger.info("Restart completed.")
+        } finally {
+            startRebuildThread()
+            consoleScanner.disabled = false
         }
-        logger.info("Stopping webapp ...")
-        webAppContext.stop()
-        logger.info("Reconfiguring webapp ...")
-        validateConfiguration()
-        setupWarFromTask(webAppContext,warTask)
-        logger.info("Restarting webapp ...")
-        webAppContext.start()
-        logger.info("Restart completed.")
     }
 
     void applyJettyXml() throws Exception {
@@ -340,18 +400,76 @@ class JettyEclipseRun extends ConventionTask implements BuildObserver {
     }
 
     @Override
-    void notifyBuildWithNewWar () {
-        rebuildTimerTask.stop()
-        if(automaticReload) {
-            logger.warn("---> Background rebuild detected changes. Reloading webapp automatically as configured.")
-            reloadingWebApp()
-        } else {
-            logger.warn("---> Background rebuild detected changes. Press ENTER to reload webapp.")
-        }
+    void notifyBuildWithNewOutput () {
+        // FileChangeObserver should notice the change
     }
 
     @Override
     void notifyBuildWithoutChanges () {
-        logger.info("Background rebuild detected no changes.")
+        // ignore this
+    }
+
+    /**
+     * A file change was detected. This is only called, if the file is readable
+     * @param changedFile the file that changed
+     */
+    @Override
+    void notifyFileChanged (File changedFile) {
+        consoleScanner.disabled = false
+        if(automaticReload) {
+            logger.warn("---> File watcher detected changes of the war file. Reloading webapp automatically as configured.")
+            reloadingWebApp()
+        } else {
+            logger.warn("---> File watcher detected changes of the war file. Press ENTER to reload webapp.")
+        }
+    }
+
+    @Override
+    void notifyFileReadError (File problemFile) {
+        consoleScanner.disabled = true
+        logger.warn("---> War file isn't readable. Reloading webapp is temporary disabled.")
+    }
+
+    private void initFromExtension() {
+        JettyEclipsePluginExtension extension = project.extensions
+                                                       .getByName(JettyEclipsePlugin.JETTY_ECLIPSE_EXTENSION) as JettyEclipsePluginExtension
+        if(httpPort == null)
+            httpPort = extension.httpPort
+
+        if(stopPort == null)
+            stopPort = extension.stopPort
+
+        if(stopKey == null)
+            stopKey = extension.stopKey
+
+        if(warFile == null)
+            warFile = extension.warFile
+
+        if(scanIntervalInSeconds == null)
+            scanIntervalInSeconds = extension.scanIntervalInSeconds
+
+        if(contextPath == null)
+            contextPath = extension.contextPath
+
+        if(webDefaultXml == null)
+            webDefaultXml = extension.webDefaultXml
+
+        if(overrideWebXml == null)
+            overrideWebXml = extension.overrideWebXml
+
+        if(jettyConfig == null)
+            jettyConfig = extension.jettyConfig
+
+        if(automaticReload == null)
+            automaticReload = extension.automaticReload
+
+        if(rebuildIntervalInSeconds == null)
+            rebuildIntervalInSeconds = extension.rebuildIntervalInSeconds
+
+        if(rebuildTask == null)
+            rebuildTask = extension.rebuildTask
+
+        if(daemon == null)
+            daemon = extension.daemon
     }
 }

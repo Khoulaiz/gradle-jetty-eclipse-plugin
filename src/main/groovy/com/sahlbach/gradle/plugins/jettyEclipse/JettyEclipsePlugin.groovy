@@ -18,15 +18,22 @@ package com.sahlbach.gradle.plugins.jettyEclipse
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.WarPlugin
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 /**
  * A {@link Plugin} to start an embedded eclipse jetty server
  */
 class JettyEclipsePlugin implements Plugin<Project> {
-    static final String JETTY_ECLIPSE_START = "jettyEclipseRun"
+
+    private final static Logger logger = LoggerFactory.getLogger(JettyEclipsePlugin);
+
+    static final String JETTY_ECLIPSE_RUN = "jettyEclipseRun"
     static final String JETTY_ECLIPSE_STOP = "jettyEclipseStop"
     static final String JETTY_ECLIPSE_PLUGIN = "jettyEclipse"
+    static final String JETTY_ECLIPSE_EXTENSION = JETTY_ECLIPSE_PLUGIN
 
-    private Project project
+    protected Project project
+    protected JettyEclipsePluginExtension extension
 
     @Override
     void apply (Project project) {
@@ -34,32 +41,33 @@ class JettyEclipsePlugin implements Plugin<Project> {
 
         project.plugins.apply(WarPlugin.class)
 
-        project.convention.plugins.jettyEclipse = new JettyEclipsePluginConvention()
-
+        extension = createExtension()
         configureJettyStart()
         configureJettyStop()
     }
 
+    protected JettyEclipsePluginExtension createExtension() {
+        extension = project.extensions.create(JETTY_ECLIPSE_EXTENSION, JettyEclipsePluginExtension)
+        extension.with {
+            // Defaults for extension
+            httpPort = 8080
+            stopPort = 8090
+            stopKey = "stop"
+            contextPath = ''
+            scanIntervalInSeconds = 5
+            automaticReload = false
+            rebuildIntervalInSeconds = 0
+            daemon = false
+        }
+        logger.info("Adding JettyEclipse extension");
+        return extension
+    }
+
     private void configureJettyStart () {
-        JettyEclipseRun jettyStart = project.tasks.create(JETTY_ECLIPSE_START, JettyEclipseRun)
+        JettyEclipseRun jettyStart = project.tasks.create(JETTY_ECLIPSE_RUN, JettyEclipseRun)
         jettyStart.description = "Deploys your war to an embedded jetty and allows easy rebuild and reload."
         jettyStart.group = WarPlugin.WEB_APP_GROUP
         jettyStart.dependsOn(WarPlugin.WAR_TASK_NAME)
-//        project.tasks.withType(JettyEclipseRun) { JettyEclipseRun task ->
-//            ConventionMapping conventionMapping = task.conventionMapping
-//            conventionMapping.with {
-//                map("httpPort") { grailsProject.projectDir }
-//                map("projectWorkDir") { grailsProject.projectWorkDir }
-//                map("grailsVersion") { grailsProject.grailsVersion }
-//
-//                map("bootstrapClasspath") { bootstrapConfiguration }
-//
-//                map("providedClasspath") { providedConfiguration }
-//                map("compileClasspath") { compileConfiguration }
-//                map("runtimeClasspath") { runtimeConfiguration }
-//                map("testClasspath") { testConfiguration }
-//            }
-//        }
     }
 
     private void configureJettyStop() {

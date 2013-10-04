@@ -15,8 +15,7 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-
-import org.gradle.api.tasks.bundling.War
+import org.gradle.api.Task
 import org.gradle.tooling.BuildLauncher
 import org.gradle.tooling.GradleConnector
 import org.gradle.tooling.ProjectConnection
@@ -27,16 +26,16 @@ class RebuildTimerTask extends TimerTask {
 
     public static Logger logger = LoggerFactory.getLogger(JettyEclipseRun)
 
-    private War warTask
+    private Task task
     private int rebuildIntervalInSeconds
     private GradleConnector gradleConnector
     private Timer timer
     private BuildObserver observer
 
-    RebuildTimerTask(BuildObserver observer, War warTask, int rebuildIntervalInSeconds) {
+    RebuildTimerTask(BuildObserver observer, Task task, int rebuildIntervalInSeconds) {
         this.observer = observer
         gradleConnector = GradleConnector.newConnector().forProjectDirectory(new File("."))
-        this.warTask = warTask
+        this.task = task
         this.rebuildIntervalInSeconds = rebuildIntervalInSeconds
         timer = new Timer(true)
         Date startDate = new Date(System.currentTimeMillis() + rebuildIntervalInSeconds * 1000)
@@ -55,12 +54,12 @@ class RebuildTimerTask extends TimerTask {
         try {
             ByteArrayOutputStream stdout = new ByteArrayOutputStream()
             ByteArrayOutputStream stderr = new ByteArrayOutputStream()
-            BuildLauncher launcher = connection.newBuild().forTasks(warTask.path)
+            BuildLauncher launcher = connection.newBuild().forTasks(task.path)
             launcher.standardOutput = stdout
             launcher.standardError = stderr
             launcher.run()
             String output = stdout.toString()
-            skipped = output =~ /$warTask.path UP-TO-DATE/
+            skipped = output =~ /$task.path UP-TO-DATE/
             success = output =~ /BUILD SUCCESSFUL/
         } catch (Exception e) {
             success = false
@@ -72,7 +71,7 @@ class RebuildTimerTask extends TimerTask {
             if(skipped) {
                 observer.notifyBuildWithoutChanges()
             } else {
-                observer.notifyBuildWithNewWar()
+                observer.notifyBuildWithNewOutput()
             }
         } else {
             observer.notifyBuildFailure()

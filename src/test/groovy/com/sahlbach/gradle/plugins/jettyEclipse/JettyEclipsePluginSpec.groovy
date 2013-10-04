@@ -35,14 +35,14 @@ class JettyEclipsePluginSpec extends Specification {
             project.apply plugin: JettyEclipsePlugin
         then:
             project.plugins.hasPlugin(WarPlugin)
-            project.convention.plugins.jettyEclipse instanceof JettyEclipsePluginConvention
+            project.convention.plugins.jettyEclipse instanceof JettyEclipsePluginExtension
     }
 
     def "Applies plugin and checks JettyRun task setup"() {
         when:
             project.apply plugin: JettyEclipsePlugin
         then:
-            def task = project.tasks[JettyEclipsePlugin.JETTY_ECLIPSE_START]
+            def task = project.tasks[JettyEclipsePlugin.JETTY_ECLIPSE_RUN]
             task instanceof JettyEclipseRun
             task.httpPort == project.httpPort
             task.dependsOn(JavaPlugin.CLASSES_TASK_NAME)

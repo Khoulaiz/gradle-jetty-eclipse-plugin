@@ -31,26 +31,35 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-
+import org.gradle.api.DefaultTask
 import org.gradle.api.InvalidUserDataException
-import org.gradle.api.internal.ConventionTask
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.logging.ProgressLogger
 import org.gradle.logging.ProgressLoggerFactory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
 /**
  * Stops the embedded Jetty web container, if it is running.
  */
-class JettyEclipseStop extends ConventionTask {
+class JettyEclipseStop extends DefaultTask {
     private static Logger logger = LoggerFactory.getLogger(JettyEclipseStop);
 
+    /**
+     * Port to listen to stop jetty on.
+     */
+    @Input
     Integer stopPort
+
+    /**
+     * Key to provide when stopping jetty.
+     */
+    @Input
     String stopKey
 
     @TaskAction
     void stop() {
+        initFromExtension()
         if (stopPort == null) {
             throw new InvalidUserDataException("Please specify a valid port")
         }
@@ -78,5 +87,15 @@ class JettyEclipseStop extends ConventionTask {
             progressLogger.completed()
         }
 
+    }
+
+    private void initFromExtension() {
+        JettyEclipsePluginExtension extension = project.extensions
+                                                       .getByName(JettyEclipsePlugin.JETTY_ECLIPSE_EXTENSION) as JettyEclipsePluginExtension
+        if(stopPort == null)
+            stopPort = extension.stopPort
+
+        if(stopKey == null)
+            stopKey = extension.stopKey
     }
 }

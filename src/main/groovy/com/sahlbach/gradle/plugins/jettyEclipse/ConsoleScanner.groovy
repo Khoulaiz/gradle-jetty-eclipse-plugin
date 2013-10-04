@@ -23,6 +23,7 @@ class ConsoleScanner extends Thread{
     private static Logger logger = LoggerFactory.getLogger(ConsoleScanner)
 
     private final JettyEclipseRun task
+    boolean disabled = false
 
     public ConsoleScanner(JettyEclipseRun task) {
         this.task = task
@@ -55,7 +56,8 @@ class ConsoleScanner extends Thread{
             if (inputByte >= 0) {
                 char c = (char) inputByte
                 if (c == '\n') {
-                    reloadWebApp()
+                    if(!disabled)
+                        reloadWebApp()
                 }
             }
         }

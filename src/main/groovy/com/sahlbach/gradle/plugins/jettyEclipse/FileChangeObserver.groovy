@@ -16,10 +16,13 @@
 
 package com.sahlbach.gradle.plugins.jettyEclipse
 
-public interface BuildObserver {
-    void notifyBuildFailure()
+/**
+ * User: ace
+ * Date: 04.10.13
+ * Time: 00:09
+ */
+public interface FileChangeObserver {
+    void notifyFileChanged(File changedFile)
 
-    void notifyBuildWithNewOutput()
-
-    void notifyBuildWithoutChanges()
+    void notifyFileReadError(File problemFile)
 }
