@@ -15,7 +15,6 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-
 import org.gradle.api.Task
 
 class JettyEclipsePluginExtension {
@@ -81,6 +80,18 @@ class JettyEclipsePluginExtension {
      * The task to start for the background rebuild
      */
     Task rebuildTask
+
+    /**
+     * A NCSA RequestLog to use for the webapp at runtime.
+     */
+    File requestLog
+
+    /**
+     * User File to use for a convenient way to setup a security service
+     * A file containing lines with the following content "user:pwd[,role]" eg. "ace: joshua,admin"
+     * Will be used with a BasicAuthenticator for the server.
+     */
+    File passwordFile
 
     /**
      * <p> Determines whether or not the server blocks when started. The default behavior (daemon = false) will cause the server to pause other processes while it continues to handle web requests.

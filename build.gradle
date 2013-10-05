@@ -115,3 +115,6 @@ task install(dependsOn: 'publishMavenGroovyPublicationToMavenLocal') << {
     logger.info "Installing $project.name"
 }
 
+test {
+    dependsOn install
+}

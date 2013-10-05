@@ -15,9 +15,7 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-import org.eclipse.jetty.security.ConstraintSecurityHandler
-import org.eclipse.jetty.security.LoginService
-import org.eclipse.jetty.security.SecurityHandler
+
 import org.eclipse.jetty.server.Connector
 import org.eclipse.jetty.server.RequestLog
 import org.eclipse.jetty.server.Server
@@ -64,29 +62,6 @@ class JettyEclipsePluginServer {
         return this.server.connectors
     }
 
-    public void setLoginServices (LoginService[] services) throws Exception {
-        if (services != null) {
-            SecurityHandler sHandler
-            if (this.server.getChildHandlerByClass(SecurityHandler) != null) {
-                sHandler = this.server.getChildHandlerByClass(SecurityHandler)
-            } else {
-                sHandler = new ConstraintSecurityHandler()
-            }
-            services.each { service ->
-                sHandler.addBean(service)
-            }
-            this.handlers.addHandler(sHandler)
-        }
-    }
-
-    public LoginService[] getLoginServices () {
-        if (this.server.getChildHandlerByClass(SecurityHandler) == null) {
-            return new LoginService[0]
-        } else {
-            return this.server.getChildHandlerByClass(SecurityHandler).beans as LoginService[]
-        }
-    }
-
     public void start() throws Exception {
         logger.info("Starting jetty " + this.server.class.package.implementationVersion + " ...")
         this.server.start()
@@ -125,7 +100,7 @@ class JettyEclipsePluginServer {
         }
     }
 
-    public Connector createDefaultConnector(int port) throws Exception {
+    public Connector createDefaultHttpConnector (int port) throws Exception {
         ServerConnector connector = new ServerConnector(this.server)
         connector.port = port
         connector.idleTimeout = DEFAULT_MAX_IDLE_TIME

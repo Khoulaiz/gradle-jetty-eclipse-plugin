@@ -16,54 +16,42 @@
 
 package com.sahlbach.gradle.plugins.jettyEclipse
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.WarPlugin
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 
 class JettyEclipsePluginSpec extends Specification {
-    Project project
-
-    def setup() {
-        project = ProjectBuilder.builder().build()
-    }
 
     def "Applies plugin and checks plugin setup"() {
+        setup:
+            Project project = ProjectBuilder.builder().build()
         expect:
             !project.plugins.hasPlugin(WarPlugin)
         when:
             project.apply plugin: JettyEclipsePlugin
         then:
             project.plugins.hasPlugin(WarPlugin)
-            project.convention.plugins.jettyEclipse instanceof JettyEclipsePluginExtension
+            project.extensions.getByName(JettyEclipsePlugin.JETTY_ECLIPSE_EXTENSION) instanceof JettyEclipsePluginExtension
     }
 
-    def "Applies plugin and checks JettyRun task setup"() {
+    def "Applies plugin and checks JettyEclipseRun task setup"() {
+        setup:
+            Project project = ProjectBuilder.builder().build()
         when:
             project.apply plugin: JettyEclipsePlugin
         then:
             def task = project.tasks[JettyEclipsePlugin.JETTY_ECLIPSE_RUN]
             task instanceof JettyEclipseRun
-            task.httpPort == project.httpPort
-            task.dependsOn(JavaPlugin.CLASSES_TASK_NAME)
-    }
-
-    def "Applies plugin and checks JettyRunWar task setup"() {
-        when:
-            project.apply plugin: JettyEclipsePlugin
-        then:
-            def task = project.tasks[JettyEclipsePlugin.JETTY_RUN_WAR]
-            task instanceof JettyRunWar
-            task.httpPort == project.httpPort
             task.dependsOn(WarPlugin.WAR_TASK_NAME)
     }
 
-    def "Applies plugin and checks JettyStop task setup"() {
+    def "Applies plugin and checks JettyEclpseStop task setup"() {
+        setup:
+            Project project = ProjectBuilder.builder().build()
         when:
             project.apply plugin: JettyEclipsePlugin
         then:
             def task = project.tasks[JettyEclipsePlugin.JETTY_ECLIPSE_STOP]
             task instanceof JettyEclipseStop
-            task.stopPort == project.stopPort
     }
 }

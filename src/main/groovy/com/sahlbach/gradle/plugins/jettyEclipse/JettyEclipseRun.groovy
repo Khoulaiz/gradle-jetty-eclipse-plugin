@@ -15,9 +15,13 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-import org.eclipse.jetty.security.LoginService
+
+import org.eclipse.jetty.security.ConstraintSecurityHandler
+import org.eclipse.jetty.security.HashLoginService
+import org.eclipse.jetty.security.SecurityHandler
+import org.eclipse.jetty.security.authentication.BasicAuthenticator
 import org.eclipse.jetty.server.Connector
-import org.eclipse.jetty.server.RequestLog
+import org.eclipse.jetty.server.NCSARequestLog
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.xml.XmlConfiguration
 import org.gradle.api.DefaultTask
@@ -46,12 +50,11 @@ import java.util.concurrent.TimeUnit
 class JettyEclipseRun extends DefaultTask {
 
     private JettyEclipsePluginServer server
+    private Connector[] connectors
 
     /**
-     * List of connectors to use. If none are configured then we use a single SelectChannelConnector at port 8080
+     * the httpPort jetty will listen to
      */
-    Connector[] connectors
-
     @Optional
     @Input
     Integer httpPort
@@ -78,9 +81,13 @@ class JettyEclipseRun extends DefaultTask {
     String stopKey
 
     /**
-     * List of login services to set up. Optional.
+     * User File to use for a convenient way to setup a security service
+     * A file containing lines with the following content "user:pwd[,role]" eg. "ace: joshua,admin"
+     * Will be used with a BasicAuthenticator for the server.
      */
-    LoginService[] loginServices
+    @Optional
+    @InputFile
+    File passwordFile
 
     /**
      * A webdefault.xml file to use instead of the default for the webapp. Optional.
@@ -138,11 +145,6 @@ class JettyEclipseRun extends DefaultTask {
     Iterable<File> additionalRuntimeJars = new ArrayList<File>()
 
     /**
-     * The "virtual" webapp created by the plugin.
-     */
-    JettyEclipsePluginWebAppContext webAppContext
-
-    /**
      * The war file we use for the web app. We will watch this file but copy it for the server
      */
     @Optional
@@ -159,7 +161,14 @@ class JettyEclipseRun extends DefaultTask {
     /**
      * A RequestLog implementation to use for the webapp at runtime. Optional.
      */
-    RequestLog requestLog
+    @Optional
+    @OutputFile
+    File requestLog
+
+    /**
+     * The "virtual" webapp created by the plugin.
+     */
+    JettyEclipsePluginWebAppContext webAppContext
 
     /**
      * the scheduled future for scheduling rebuilds
@@ -328,27 +337,20 @@ class JettyEclipseRun extends DefaultTask {
             applyJettyXml()
 
             // setup connectors to use
-            server.connectors = connectors
-            if (server.connectors == null || server.connectors.length == 0) {
-                connectors = [server.createDefaultConnector(httpPort)]
-                server.connectors = connectors
-            }
+            def conList = []
+            conList += server.createDefaultHttpConnector(httpPort)
+            server.connectors = conList
 
             // set up a RequestLog if one is provided
             if (requestLog != null) {
-                server.requestLog = requestLog
+                requestLog.parentFile.mkdirs()
+                server.requestLog = new NCSARequestLog(requestLog.canonicalPath)
             }
 
             // set up the webapp and any context provided
             server.configureHandlers()
             configureWebApplication()
             server.addWebApplication(webAppContext)
-
-            // set up login services
-            loginServices.each {
-                logger.debug("${it.class.name} : $it")
-            }
-            server.loginServices = loginServices
 
             // start Jetty
             server.start()
@@ -430,7 +432,16 @@ class JettyEclipseRun extends DefaultTask {
         webAppContext.parentLoaderPriority = false
 
         setupWar(webAppContext, warFile)
-
+        if(passwordFile != null) {
+            if (passwordFile.canRead()) {
+                SecurityHandler securityHandler = new ConstraintSecurityHandler()
+                securityHandler.loginService = new HashLoginService("Gradle",passwordFile.canonicalPath)
+                securityHandler.authenticator = new BasicAuthenticator()
+                webAppContext.securityHandler = securityHandler
+            } else {
+                logger.error("Passwordfile $passwordFile.canonicalPath not readable")
+            }
+        }
         logger.info("War file = " + webAppContext.war)
         logger.info("Context path = " + webAppContext.contextPath)
         logger.info("Tmp directory = " + " determined at runtime")
@@ -562,7 +573,7 @@ class JettyEclipseRun extends DefaultTask {
         }
     }
 
-    private void initFromExtension() {
+    void initFromExtension() {
         JettyEclipsePluginExtension extension = project.extensions
                                                        .getByName(JettyEclipsePlugin.JETTY_ECLIPSE_EXTENSION) as JettyEclipsePluginExtension
         if(httpPort == null)
@@ -600,6 +611,12 @@ class JettyEclipseRun extends DefaultTask {
 
         if(rebuildTask == null)
             rebuildTask = extension.rebuildTask
+
+        if(requestLog == null)
+            requestLog = extension.requestLog
+
+        if(passwordFile == null)
+            passwordFile = extension.passwordFile
 
         if(daemon == null)
             daemon = extension.daemon

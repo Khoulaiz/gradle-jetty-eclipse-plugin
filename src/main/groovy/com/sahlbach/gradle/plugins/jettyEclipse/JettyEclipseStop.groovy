@@ -89,7 +89,7 @@ class JettyEclipseStop extends DefaultTask {
 
     }
 
-    private void initFromExtension() {
+    void initFromExtension() {
         JettyEclipsePluginExtension extension = project.extensions
                                                        .getByName(JettyEclipsePlugin.JETTY_ECLIPSE_EXTENSION) as JettyEclipsePluginExtension
         if(stopPort == null)
