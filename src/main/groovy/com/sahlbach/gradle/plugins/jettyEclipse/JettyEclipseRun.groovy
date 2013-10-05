@@ -15,7 +15,6 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-
 import org.eclipse.jetty.security.LoginService
 import org.eclipse.jetty.server.Connector
 import org.eclipse.jetty.server.RequestLog
@@ -30,16 +29,21 @@ import org.gradle.api.tasks.bundling.War
 import org.gradle.internal.classpath.DefaultClassPath
 import org.gradle.logging.ProgressLogger
 import org.gradle.logging.ProgressLoggerFactory
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import org.gradle.tooling.BuildLauncher
+import org.gradle.tooling.GradleConnector
+import org.gradle.tooling.ProjectConnection
+
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 /**
  * <p>Deploys a WAR to an embedded Jetty web container.</p>
  *
  * <p> Once started, the web container can be configured to run continuously,
  * rebuilding periodically the war file and automatically performing a hot redeploy when necessary. </p>
  */
-class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeObserver {
-    public static Logger logger = LoggerFactory.getLogger(JettyEclipseRun);
+class JettyEclipseRun extends DefaultTask {
 
     private JettyEclipsePluginServer server
 
@@ -115,10 +119,16 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
     @InputFile
     File jettyConfig
 
+    /**
+     * true: reload webapp automatically as soon as changes are detected
+     */
     @Optional
     @Input
     Boolean automaticReload;
 
+    /**
+     * if > 0 the interval in seconds we check the war file for changes
+     */
     @Optional
     @Input
     Integer scanIntervalInSeconds;
@@ -130,12 +140,7 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
     /**
      * The "virtual" webapp created by the plugin.
      */
-    private JettyEclipsePluginWebAppContext webAppContext
-
-    /**
-     * A scanner to check ENTER hits on the console.
-     */
-    private ConsoleScanner consoleScanner
+    JettyEclipsePluginWebAppContext webAppContext
 
     /**
      * The war file we use for the web app. We will watch this file but copy it for the server
@@ -154,17 +159,144 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
     /**
      * A RequestLog implementation to use for the webapp at runtime. Optional.
      */
-    private RequestLog requestLog
+    RequestLog requestLog
 
     /**
-     * the timer task for scheduling rebuilds
+     * the scheduled future for scheduling rebuilds
      */
-    private RebuildTimerTask rebuildTimerTask
+    ScheduledFuture<?> rebuildTimerFuture
 
     /**
-     * the timer task for scheduling file watching
+     * the scheduled future for watching the war file
      */
-    private FileWatcherTimerTask fileWatcherTimerTask;
+    ScheduledFuture<?> fileWatchFuture
+
+    /**
+     * the scheduled future for watching user input
+     */
+    ScheduledFuture<?> consoleScannerFuture
+
+    /**
+     * connector used for background builds
+     */
+    GradleConnector gradleConnector
+
+    /**
+     * synchronization object for multithreaded access
+     */
+    final Object semaphore = new Object()
+
+    /**
+     * executor service for the multithreading repeating tasks
+     */
+    ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+    /**
+     * lastModified of the war File
+     */
+    long warFileLastModified
+
+    /**
+     * prevent manual reload if true
+     */
+    boolean manualReloadDisabled = false
+
+    /**
+     * Rebuild closure for background builds
+     */
+    def rebuildClosure = {
+        logger.debug('Attempting to rebuild')
+        ProjectConnection connection = gradleConnector.connect()
+        synchronized(semaphore) {
+            logger.warn('Rebuilding webapp...')
+            try {
+                ByteArrayOutputStream stdout = new ByteArrayOutputStream()
+                ByteArrayOutputStream stderr = new ByteArrayOutputStream()
+                BuildLauncher launcher = connection.newBuild().forTasks(rebuildTask.path)
+                launcher.standardOutput = stdout
+                launcher.standardError = stderr
+                launcher.run()
+                logger.debug('Rebuild finished')
+            } catch (Exception e) {
+                logger.debug("Build ended with exception: "+e)
+            } finally {
+                connection.close()
+            }
+        }
+    }
+
+    /**
+     * file watcher closure to monitor changes of the original war file
+     */
+    def fileWatchClosure = {
+        boolean changed = false
+        synchronized(semaphore) {
+            try {
+                if(!warFile.exists() || !warFile.canRead()) {
+                    if(!manualReloadDisabled) {
+                        manualReloadDisabled = true
+                        logger.warn("---> War file isn't readable. Reloading webapp is temporary disabled.")
+                    }
+                    warFileLastModified = 0
+                } else {
+                    if(manualReloadDisabled) {
+                        logger.warn("---> War file is readable. Reloading webapp enabled.")
+                        manualReloadDisabled = false
+                    }
+                    if(warFileLastModified != warFile.lastModified()) {
+                        changed = true
+                        warFileLastModified = warFile.lastModified()
+                    }
+                }
+            } catch (Exception e) {
+                warFileLastModified = 0
+            }
+        }
+        if(changed) {
+            if(automaticReload) {
+                logger.warn("---> File watcher detected changes of the war file. Reloading webapp automatically as configured.")
+                reloadWebApp()
+            } else {
+                logger.warn("---> File watcher detected changes of the war file. Press ENTER to reload webapp.")
+            }
+        }
+    }
+
+    /**
+     * Console scanner to watch for user input
+     */
+    def consoleScannerClosure = {
+        while (System.in.available() > 0) {
+            int inputByte = System.in.read()
+            if (inputByte >= 0) {
+                char c = (char) inputByte
+                if (c == '\n' && !manualReloadDisabled) {
+                    reloadWebApp()
+                    clearInputBuffer()
+                } else if((c == 'r') || (c == 'R')) {
+                    int secondByte = System.in.read()
+                    if(secondByte >= 0) {
+                        char c2 = (char) secondByte
+                        if(c2 == '\n') {
+                            if(rebuildTask != null) {
+                                if(rebuildTimerFuture != null) {
+                                    rebuildTimerFuture.cancel(true)
+                                    rebuildTimerFuture = null
+                                }
+                                rebuildClosure.call()
+                                if(c == 'r' && !manualReloadDisabled)
+                                    reloadWebApp()
+                                startRebuildThread()
+                                clearInputBuffer()
+                            } else {
+                                logger.warn('No rebuild task available. Define a rebuild task or make this task dependent to a war task.')
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     @TaskAction
     protected void start() {
@@ -231,7 +363,7 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
             // start the file watcher thread (if necessary)
             startWatcherThread()
 
-            // start the new line scanner thread
+            // start the new line scanner
             startConsoleScanner()
 
             if (stopPort > 0 && stopKey != null) {
@@ -261,13 +393,19 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
 
     void startRebuildThread () {
         if(rebuildIntervalInSeconds > 0) {
-            rebuildTimerTask = new RebuildTimerTask(this, rebuildTask, rebuildIntervalInSeconds, warFile)
+             rebuildTimerFuture = scheduler.scheduleWithFixedDelay(rebuildClosure,
+                                                                   rebuildIntervalInSeconds,
+                                                                   rebuildIntervalInSeconds,
+                                                                   TimeUnit.SECONDS)
         }
     }
 
     void startWatcherThread () {
         if(scanIntervalInSeconds > 0) {
-            fileWatcherTimerTask = new FileWatcherTimerTask(this, warFile, scanIntervalInSeconds, warFile)
+            fileWatchFuture = scheduler.scheduleWithFixedDelay(fileWatchClosure,
+                                                               scanIntervalInSeconds,
+                                                               scanIntervalInSeconds,
+                                                               TimeUnit.SECONDS)
         }
     }
 
@@ -309,13 +447,14 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
      * @return destination file
      */
     private void setupWar (JettyEclipsePluginWebAppContext webAppContext, File warFile) {
-        synchronized (warFile) {
+        synchronized (semaphore) {
             File destination = new File(project.buildDir, "tmp/${JettyEclipsePlugin.JETTY_ECLIPSE_PLUGIN}/war/")
             destination.deleteDir()
             destination.mkdirs()
             destination = new File(destination, "${warFile.name}")
             destination.bytes = warFile.bytes
             webAppContext.war = destination.canonicalPath
+            warFileLastModified = warFile.lastModified()
         }
     }
 
@@ -352,38 +491,46 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
         if(!warFile.exists() || !warFile.canRead()) {
             throw new InvalidUserDataException("The specified war file $warFile.canonicalPath cannot be read.")
         }
+        gradleConnector = GradleConnector.newConnector().forProjectDirectory(project.rootDir)
         logger.debug("warFile used: $warFile.canonicalPath")
         logger.debug("rebuildTask used: $rebuildTask")
     }
 
     /**
-     * Run a thread that monitors the console input to detect ENTER hits.
+     * Run a thread that monitors the console input to detect user input.
      */
     private void startConsoleScanner() {
-        logger.warn("Console reloading is ENABLED. Hit ENTER on the console to reload the webapp.")
-        consoleScanner = new ConsoleScanner(this)
-        consoleScanner.start()
+        String output = '\nHit <ENTER> to reload the webapp.\n'
+        if(rebuildTask != null) {
+            output += 'Hit r + <ENTER> to rebuild and reload the webapp.\n'
+            output += 'Hit R + <ENTER> to rebuild the webapp without reload'
+            if(automaticReload)
+                output += ' (may trigger automatic reload).'
+            output += '\n'
+        }
+        logger.warn(output)
+        consoleScannerFuture = scheduler.scheduleWithFixedDelay(consoleScannerClosure,1,1,TimeUnit.SECONDS)
     }
 
-    public void reloadingWebApp () throws Exception {
-        logger.warn("Reloading webapp ...")
-        consoleScanner.disabled = true
-        try {
-            if(rebuildTimerTask != null) {
-                rebuildTimerTask.stop()
-                rebuildTimerTask = null
+    public void reloadWebApp () throws Exception {
+        synchronized(semaphore) {
+            logger.warn("Reloading webapp ...")
+            try {
+                if(rebuildTimerFuture != null) {
+                    rebuildTimerFuture.cancel(true)
+                    rebuildTimerFuture = null
+                }
+                logger.info("Stopping webapp ...")
+                webAppContext.stop()
+                logger.info("Reconfiguring webapp ...")
+                validateConfiguration()
+                setupWar(webAppContext,warFile)
+                logger.info("Restarting webapp ...")
+                webAppContext.start()
+                logger.info("Restart completed.")
+            } finally {
+                startRebuildThread()
             }
-            logger.info("Stopping webapp ...")
-            webAppContext.stop()
-            logger.info("Reconfiguring webapp ...")
-            validateConfiguration()
-            setupWar(webAppContext,warFile)
-            logger.info("Restarting webapp ...")
-            webAppContext.start()
-            logger.info("Restart completed.")
-        } finally {
-            startRebuildThread()
-            consoleScanner.disabled = false
         }
     }
 
@@ -396,40 +543,23 @@ class JettyEclipseRun extends DefaultTask implements BuildObserver, FileChangeOb
         xmlConfiguration.configure(server.proxiedObject)
     }
 
-    @Override
-    void notifyBuildFailure () {
-        logger.info("Background build failt.")
-    }
-
-    @Override
-    void notifyBuildWithNewOutput () {
-        // FileChangeObserver should notice the change
-    }
-
-    @Override
-    void notifyBuildWithoutChanges () {
-        // ignore this
-    }
-
     /**
-     * A file change was detected. This is only called, if the file is readable
-     * @param changedFile the file that changed
+     * Skip buffered bytes of system console.
      */
-    @Override
-    void notifyFileChanged (File changedFile) {
-        consoleScanner.disabled = false
-        if(automaticReload) {
-            logger.warn("---> File watcher detected changes of the war file. Reloading webapp automatically as configured.")
-            reloadingWebApp()
-        } else {
-            logger.warn("---> File watcher detected changes of the war file. Press ENTER to reload webapp.")
+    private static void clearInputBuffer() {
+        try {
+            while (System.in.available() > 0) {
+                // System.in.skip doesn't work properly. I don't know why
+                long available = System.in.available()
+                for (int i = 0; i < available; i++) {
+                    if (System.in.read() == -1) {
+                        break
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // ignore
         }
-    }
-
-    @Override
-    void notifyFileReadError (File problemFile) {
-        consoleScanner.disabled = true
-        logger.warn("---> War file isn't readable. Reloading webapp is temporary disabled.")
     }
 
     private void initFromExtension() {
