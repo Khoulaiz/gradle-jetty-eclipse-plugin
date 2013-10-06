@@ -102,10 +102,36 @@ def pomConfig = {
     }
 }
 
+// creates the sources.jar
+task('sourcesJar', type: Jar, dependsOn: 'classes') {
+    classifier = 'sources'
+    from sourceSets.main.groovy
+}
+
+// creates the groovydoc.jar
+task('groovydocJar', type: Jar, dependsOn: 'groovydoc') {
+    classifier = 'groovydoc'
+    from groovydoc.destinationDir
+}
+
+// Set up gradle to upload source and javadoc jars.
+artifacts {
+    archives sourcesJar
+    archives groovydocJar
+}
+
 publishing {
     publications {
         mavenGroovy(MavenPublication) {
             from components.java
+
+            artifact sourcesJar {
+                classifier "sources"
+            }
+
+            artifact groovydocJar {
+                classifier "groovydoc"
+            }
             pom.withXml {
                 def root = asNode()
                 root.with {
@@ -122,6 +148,14 @@ publishing {
     }
 }
 
+task install(dependsOn: 'publishMavenGroovyPublicationToMavenLocal') << {
+    logger.info "Installing $project.name"
+}
+
+test {
+    dependsOn install
+}
+
 bintray {
     user = 'khoulaiz'
     // ${USER.HOME}/gradle.properties contains my secret entry bintray.key=...
@@ -132,12 +166,4 @@ bintray {
         name = "gradle-jetty-eclipse-plugin"
         licenses = ['Apache-2.0']
     }
-}
-
-task install(dependsOn: 'publishMavenGroovyPublicationToMavenLocal') << {
-    logger.info "Installing $project.name"
-}
-
-test {
-    dependsOn install
 }

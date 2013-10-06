@@ -30,21 +30,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="guava-15.0" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-1.6.6" level="project" />
-    <orderEntry type="library" exported="" name="jetty-webapp-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-plus-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-annotations-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-util-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-xml-9.0.5.v20130815" level="project" />
     <orderEntry type="library" exported="" name="javax.servlet-3.0.0.v201112011016" level="project" />
-    <orderEntry type="library" exported="" name="jetty-http-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-io-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-server-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-security-9.0.5.v20130815" level="project" />
-    <orderEntry type="library" exported="" name="jetty-servlet-9.0.5.v20130815" level="project" />
     <orderEntry type="library" exported="" name="javax.transaction-1.1.1.v201105210645" level="project" />
     <orderEntry type="library" exported="" name="javax.activation-1.1.0.v201105071233" level="project" />
     <orderEntry type="library" exported="" name="javax.mail.glassfish-1.4.1.v201005082020" level="project" />
-    <orderEntry type="library" exported="" name="jetty-jndi-9.0.5.v20130815" level="project" />
     <orderEntry type="library" exported="" name="javax.annotation-1.1.0.v201108011116" level="project" />
     <orderEntry type="library" exported="" name="org.objectweb.asm-3.1.0.v200803061910" level="project" />
     <orderEntry type="library" exported="" name="groovy-all-1.8.6" level="project" />
@@ -176,7 +165,6 @@
     <orderEntry type="library" exported="" name="gradle-build-setup-1.8" level="project" />
     <orderEntry type="library" exported="" name="gradle-language-jvm-1.8" level="project" />
     <orderEntry type="library" exported="" name="gradle-language-base-1.8" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="jetty-jsp-9.0.5.v20130815" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="javax.servlet.jsp-2.2.0.v201112011158" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="org.apache.jasper.glassfish-2.2.2.v201112011158" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="javax.servlet.jsp.jstl-1.2.0.v201105211821" level="project" />
@@ -192,6 +180,14 @@
     <orderEntry type="library" exported="" name="jetty-plus-9.0.6.v20130930" level="project" />
     <orderEntry type="library" exported="" name="jetty-annotations-9.0.6.v20130930" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="jetty-jsp-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-util-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-xml-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-http-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-io-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-server-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-security-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-servlet-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-jndi-9.0.6.v20130930" level="project" />
   </component>
 </module>
 
