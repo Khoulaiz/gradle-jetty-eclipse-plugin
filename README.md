@@ -76,29 +76,31 @@ You can configure global settings of the plugin using the `jettyEclipse` extensi
 
 | Name                     | Type          | Default       | Purpose
 | ------------------------ |:-------------:| ------------- | --------------------------------------------------------------------
-| httpPort                 | int           | 8080          | Jetty Server will listen to this port
-| stopPort                 | int           | 8090          | Port to listen for stop request via the jettyEclipseStop task
-| stopKey                  | String        | stop          | Key to provide when stopping jetty via the jettyEclipseStop task
-| warFile                  | File          | -             | War File to use for the web app (if not set, the jettyEclipseRun
-|                          |               |               | task will search for a dependent War task and use its output war)
-| scanIntervalInSeconds    | int           | 5             | scans the war file for changes every x seconds (via lastModified)
-| contextPath              | String        | /             | the context path of the webapp
-| webDefaultXml            | File          | jetty default | jetty default web.xml (applied before web.xml of war)
-| overrideWebXml           | File          | -             | will be applied after the webapp web.xml
-| jettyConfig              | File          | jetty default | Location of a jetty XML configuration file whose contents will
-|                          |               |               | be applied before any plugin configuration
+| additionalRuntimeJars    | File[]        | -             | list of additional jars that will be added to the classpath
 | automaticReload          | boolean       | false         | true: the webapp is reloaded after changes were detected
 |                          |               |               | false: changes are reported to console, reload must be triggered
 |                          |               |               |        manually via the console
+| contextPath              | String        | /             | the context path of the webapp
+| daemon                   | boolean       | false         | will start the jetty server detached
+| httpPort                 | int           | 8080          | Jetty Server will listen to this port
+| jettyConfig              | File          | jetty default | Location of a jetty XML configuration file whose contents will
+|                          |               |               | be applied before any plugin configuration
+| overrideWebXml           | File          | -             | will be applied after the webapp web.xml
+| passwordFile             | File          | -             | text file containing user database. Will setup Basic
+|                          |               |               | Authenticator with this database. The format of the file is
+|                          |               |               | `user: password[,role]`. See example project.
 | rebuildIntervalInSeconds | int           | -             | > 0: starts background builds every x seconds
 | rebuildTask              | Task          | dependent war | the task that is used for the background rebuild
 |                          |               | type task     |
 | requestLog               | File          | -             | NCSA request log of the jetty server
-| passwordFile             | File          | -             | text file containing user database. Will setup Basic
-|                          |               |               | Authenticator with this database. The format of the file is
-|                          |               |               | `user: password[,role]`. See example project.
-| additionalRuntimeJars    | File[]        | -             | list of additional jars that will be added to the classpath
-| daemon                   | boolean       | false         | will start the jetty server detached
+| scanIntervalInSeconds    | int           | 5             | scans the war file for changes every x seconds (via lastModified)
+| skipAnnotations          | boolean       | false         | skip scanning of servlet 3.0 annotations, which can take a
+|                          |               |               | great deal of time
+| stopPort                 | int           | 8090          | Port to listen for stop request via the jettyEclipseStop task
+| stopKey                  | String        | stop          | Key to provide when stopping jetty via the jettyEclipseStop task
+| warFile                  | File          | -             | War File to use for the web app (if not set, the jettyEclipseRun
+|                          |               |               | task will search for a dependent War task and use its output war)
+| webDefaultXml            | File          | jetty default | jetty default web.xml (applied before web.xml of war)
 
 ### jettyEclipseRun
 
