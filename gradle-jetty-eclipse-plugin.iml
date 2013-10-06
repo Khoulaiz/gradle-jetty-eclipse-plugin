@@ -188,6 +188,10 @@
     <orderEntry type="library" scope="TEST" name="hamcrest-core-1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="junit-dep-4.9" level="project" />
     <orderEntry type="library" scope="TEST" name="groovy-all-1.8.5" level="project" />
+    <orderEntry type="library" exported="" name="jetty-webapp-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-plus-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" name="jetty-annotations-9.0.6.v20130930" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="jetty-jsp-9.0.6.v20130930" level="project" />
   </component>
 </module>
 
