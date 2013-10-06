@@ -76,6 +76,11 @@ class JettyEclipsePluginExtension {
     int rebuildIntervalInSeconds
 
     /**
+     * true: don't scan for servlet annotations
+     */
+    boolean skipAnnotations
+
+    /**
      * The task to start for the background rebuild
      */
     Task rebuildTask

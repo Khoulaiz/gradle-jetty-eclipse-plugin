@@ -134,6 +134,11 @@ class JettyEclipseRun extends DefaultTask {
     File requestLog
 
     /**
+     * true: don't scan for servlet annotations
+     */
+    Boolean skipAnnotations
+
+    /**
      * The "virtual" webapp created by the plugin.
      */
     JettyEclipsePluginWebAppContext webAppContext
@@ -380,7 +385,7 @@ class JettyEclipseRun extends DefaultTask {
     }
 
     void configureWebApplication () {
-        webAppContext = new JettyEclipsePluginWebAppContext()
+        webAppContext = new JettyEclipsePluginWebAppContext(skipAnnotations)
         webAppContext.contextPath = contextPath.empty || contextPath.startsWith("/") ? contextPath : "/" + contextPath
         if (temporaryDir != null) {
             webAppContext.tempDirectory = temporaryDir
@@ -588,6 +593,9 @@ class JettyEclipseRun extends DefaultTask {
 
         if(additionalRuntimeJars == null)
             additionalRuntimeJars = extension.additionalRuntimeJars
+
+        if(skipAnnotations == null)
+            skipAnnotations = extension.skipAnnotations
 
         if(daemon == null)
             daemon = extension.daemon

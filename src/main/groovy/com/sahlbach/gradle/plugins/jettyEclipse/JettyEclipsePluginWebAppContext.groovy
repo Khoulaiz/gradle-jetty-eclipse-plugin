@@ -44,18 +44,20 @@ class JettyEclipsePluginWebAppContext extends WebAppContext {
                                                             plusConfiguration,
                                                             jettyWebConfig] as AbstractConfiguration[]
 
-    JettyEclipsePluginWebAppContext () {
+    JettyEclipsePluginWebAppContext (boolean skipAnnotations) {
         super();
-        String v = System.getProperty("java.version")
-        String[] version = v.split("\\.")
-        if (version == null) {
-            logger.info("Unable to determine jvm version, annotations will not be supported")
-        } else {
-            int major = Integer.parseInt(version[0])
-            int minor = Integer.parseInt(version[1])
-            if ((major >= 1) && (minor >= 5)) {
-                AbstractConfiguration annotationConfig = new AnnotationConfiguration()
-                configs.add(4,annotationConfig)
+        if(!skipAnnotations) {
+            String v = System.getProperty("java.version")
+            String[] version = v.split("\\.")
+            if (version == null) {
+                logger.info("Unable to determine jvm version, annotations will not be supported")
+            } else {
+                int major = Integer.parseInt(version[0])
+                int minor = Integer.parseInt(version[1])
+                if ((major >= 1) && (minor >= 5)) {
+                    AbstractConfiguration annotationConfig = new AnnotationConfiguration()
+                    configs.add(4,annotationConfig)
+                }
             }
         }
         configurations = configs.toArray(new Configuration[configs.size()])

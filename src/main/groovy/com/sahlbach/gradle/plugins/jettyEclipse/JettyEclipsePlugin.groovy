@@ -58,6 +58,7 @@ class JettyEclipsePlugin implements Plugin<Project> {
             automaticReload = false
             rebuildIntervalInSeconds = 0
             daemon = false
+            skipAnnotations = false
         }
         logger.info("Adding JettyEclipse extension");
         return extension
