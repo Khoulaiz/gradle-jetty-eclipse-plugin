@@ -15,12 +15,10 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-
 import org.eclipse.jetty.security.ConstraintSecurityHandler
 import org.eclipse.jetty.security.HashLoginService
 import org.eclipse.jetty.security.SecurityHandler
 import org.eclipse.jetty.security.authentication.BasicAuthenticator
-import org.eclipse.jetty.server.Connector
 import org.eclipse.jetty.server.NCSARequestLog
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.xml.XmlConfiguration
@@ -28,7 +26,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Task
-import org.gradle.api.tasks.*
+import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.bundling.War
 import org.gradle.internal.classpath.DefaultClassPath
 import org.gradle.logging.ProgressLogger
@@ -50,34 +48,25 @@ import java.util.concurrent.TimeUnit
 class JettyEclipseRun extends DefaultTask {
 
     private JettyEclipsePluginServer server
-    private Connector[] connectors
 
     /**
      * the httpPort jetty will listen to
      */
-    @Optional
-    @Input
     Integer httpPort
 
     /**
      * The context path for the webapp.
      */
-    @Optional
-    @Input
     String contextPath
 
     /**
      * Port to listen to stop jetty on.
      */
-    @Optional
-    @Input
     Integer stopPort
 
     /**
      * Key to provide when stopping jetty.
      */
-    @Optional
-    @Input
     String stopKey
 
     /**
@@ -85,22 +74,16 @@ class JettyEclipseRun extends DefaultTask {
      * A file containing lines with the following content "user:pwd[,role]" eg. "ace: joshua,admin"
      * Will be used with a BasicAuthenticator for the server.
      */
-    @Optional
-    @InputFile
     File passwordFile
 
     /**
      * A webdefault.xml file to use instead of the default for the webapp. Optional.
      */
-    @Optional
-    @Input
     File webDefaultXml
 
     /**
      * A web.xml file to be applied AFTER the webapp's web.xml file. Useful for applying different build profiles, eg test, production etc. Optional.
      */
-    @Optional
-    @Input
     File overrideWebXml
 
     /**
@@ -108,61 +91,43 @@ class JettyEclipseRun extends DefaultTask {
      * This is useful when starting the server with the intent to work with it interactively. </p><p> Often, it is desirable to let the server start and continue running subsequent processes in an
      * automated build environment. This can be facilitated by setting daemon to true. </p>
      */
-    @Optional
-    @Input
     Boolean daemon
 
     /**
      * should the plugin try gradle rebuilds after x seconds to detect changes? 0 == disabled
      */
-    @Optional
-    @Input
     Integer rebuildIntervalInSeconds
 
     /**
      * Location of a jetty XML configuration file whose contents will be applied before any plugin configuration. Optional.
      */
-    @Optional
-    @InputFile
     File jettyConfig
 
     /**
      * true: reload webapp automatically as soon as changes are detected
      */
-    @Optional
-    @Input
     Boolean automaticReload;
 
     /**
      * if > 0 the interval in seconds we check the war file for changes
      */
-    @Optional
-    @Input
     Integer scanIntervalInSeconds;
 
-    @Optional
-    @InputFiles
     Iterable<File> additionalRuntimeJars = new ArrayList<File>()
 
     /**
      * The war file we use for the web app. We will watch this file but copy it for the server
      */
-    @Optional
-    @InputFile
     File warFile
 
     /**
      * The task to build for the automatic rebuild
      */
-    @Optional
-    @Input
     Task rebuildTask
 
     /**
      * A RequestLog implementation to use for the webapp at runtime. Optional.
      */
-    @Optional
-    @OutputFile
     File requestLog
 
     /**

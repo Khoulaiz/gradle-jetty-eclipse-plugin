@@ -33,7 +33,6 @@
 package com.sahlbach.gradle.plugins.jettyEclipse
 import org.gradle.api.DefaultTask
 import org.gradle.api.InvalidUserDataException
-import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.logging.ProgressLogger
 import org.gradle.logging.ProgressLoggerFactory
@@ -48,13 +47,11 @@ class JettyEclipseStop extends DefaultTask {
     /**
      * Port to listen to stop jetty on.
      */
-    @Input
     Integer stopPort
 
     /**
      * Key to provide when stopping jetty.
      */
-    @Input
     String stopKey
 
     @TaskAction

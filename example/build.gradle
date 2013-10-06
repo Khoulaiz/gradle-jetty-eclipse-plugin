@@ -1,0 +1,58 @@
+import com.sahlbach.gradle.plugins.jettyEclipse.*
+
+apply plugin: 'war'
+
+version = '1.0-SNAPSHOT'
+
+buildscript {
+     repositories {
+         mavenLocal()
+         maven { url 'http://jcenter.bintray.com' }
+    }
+    
+    dependencies {
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.0')
+    }
+}
+apply plugin: 'jettyEclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile "org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016"
+}
+
+// global settings
+jettyEclipse {
+    // Defaults
+    // httpPort = 8080
+    // stopPort = 8090
+    // stopKey = "stop"
+    // contextPath = '/'
+    // scanIntervalInSeconds = 5
+    // automaticReload = false
+    // rebuildIntervalInSeconds = 0
+    passwordFile = new File('src/main/debug/pwd.txt')
+}
+
+// adding request log to standard jetty Eclipse Run task
+jettyEclipseRun {
+    requestLog = new File(project.buildDir,"request.log")
+}
+
+// create a special war for debugging
+task devWar(type: War) {
+    // adding debug jndi entries
+    from('src/main/debug') {
+        into ('WEB-INF')
+    }
+    baseName = 'dev-example'
+}
+
+// add a jetty eclipse run task for the debug war
+task devJetty(type: JettyEclipseRun, dependsOn: 'devWar') {
+    rebuildIntervalInSeconds = 10
+    automaticReload = true
+}
