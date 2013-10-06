@@ -1,5 +1,6 @@
-build
-.gradle
+**/build
+**/.gradle
 *.iws
 .idea
 .java-version
+out

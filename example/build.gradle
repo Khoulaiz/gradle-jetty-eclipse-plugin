@@ -1,0 +1,74 @@
+/*
+ * Copyright 2012-2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import com.sahlbach.gradle.plugins.jettyEclipse.*
+
+apply plugin: 'war'
+
+version = '1.0-SNAPSHOT'
+
+buildscript {
+     repositories {
+         mavenLocal()
+         maven { url 'http://jcenter.bintray.com' }
+    }
+    
+    dependencies {
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.0')
+    }
+}
+apply plugin: 'jettyEclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile "org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016"
+}
+
+// global settings
+jettyEclipse {
+    // Defaults
+    // httpPort = 8080
+    // stopPort = 8090
+    // stopKey = "stop"
+    // contextPath = '/'
+    // scanIntervalInSeconds = 5
+    // automaticReload = false
+    // rebuildIntervalInSeconds = 0
+    passwordFile = new File('src/main/debug/pwd.txt')
+}
+
+// adding request log to standard jetty Eclipse Run task
+jettyEclipseRun {
+    requestLog = new File(project.buildDir,"request.log")
+}
+
+// create a special war for debugging
+task devWar(type: War) {
+    // adding debug jndi entries
+    from('src/main/debug') {
+        into ('WEB-INF')
+    }
+    baseName = 'dev-example'
+}
+
+// add a jetty eclipse run task for the debug war
+task devJetty(type: JettyEclipseRun, dependsOn: 'devWar') {
+    rebuildIntervalInSeconds = 10
+    automaticReload = true
+}
