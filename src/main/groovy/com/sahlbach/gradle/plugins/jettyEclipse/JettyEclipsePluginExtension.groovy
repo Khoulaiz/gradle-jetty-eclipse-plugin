@@ -72,7 +72,6 @@ class JettyEclipsePluginExtension {
 
     /**
      * should the plugin try gradle rebuilds after x seconds to detect changes? 0 == disabled
-     * this should be used in conjunction with
      */
     int rebuildIntervalInSeconds
 
@@ -92,6 +91,11 @@ class JettyEclipsePluginExtension {
      * Will be used with a BasicAuthenticator for the server.
      */
     File passwordFile
+
+    /**
+     * list of additional runtime jars for the classpath
+     */
+    Iterable<File> additionalRuntimeJars = new ArrayList<File>()
 
     /**
      * <p> Determines whether or not the server blocks when started. The default behavior (daemon = false) will cause the server to pause other processes while it continues to handle web requests.

@@ -60,35 +60,30 @@ class Monitor extends Thread {
                 if (!this.key.equals(key)) {
                     continue
                 }
-                String cmd = lin.readLine()
-                if ("stop".equals(cmd)) {
-                    try {
-                        socket.close()
-                    } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e)
-                    }
-                    try {
-                        socket.close()
-                    } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e)
-                    }
-                    try {
-                        serverSocket.close()
-                    } catch (Exception e) {
-                        logger.debug("Exception when stopping server", e)
-                    }
-                    serverSocket = null
-                    try {
-                        logger.info("Stopping server due to received '{}' command...", cmd)
-                        server.stop()
-                    } catch (Exception e) {
-                        logger.error("Exception when stopping server", e)
-                    }
-                    //We've stopped the server. No point hanging around any more...
-                    return
-                } else {
-                    logger.info("Unsupported monitor operation")
+                try {
+                    socket.close()
+                } catch (Exception e) {
+                    logger.debug("Exception when stopping server", e)
                 }
+                try {
+                    socket.close()
+                } catch (Exception e) {
+                    logger.debug("Exception when stopping server", e)
+                }
+                try {
+                    serverSocket.close()
+                } catch (Exception e) {
+                    logger.debug("Exception when stopping server", e)
+                }
+                serverSocket = null
+                try {
+                    logger.info("Stopping server due to received '{}' command...", key)
+                    server.stop()
+                } catch (Exception e) {
+                    logger.error("Exception when stopping server", e)
+                }
+                //We've stopped the server. No point hanging around any more...
+                return
             } catch (Exception e) {
                 logger.error("Exception during monitoring Server", e)
             } finally {

@@ -113,6 +113,9 @@ class JettyEclipseRun extends DefaultTask {
      */
     Integer scanIntervalInSeconds;
 
+    /**
+     * list of additional runtime jars for the classpath
+     */
     Iterable<File> additionalRuntimeJars = new ArrayList<File>()
 
     /**
@@ -582,6 +585,9 @@ class JettyEclipseRun extends DefaultTask {
 
         if(passwordFile == null)
             passwordFile = extension.passwordFile
+
+        if(additionalRuntimeJars == null)
+            additionalRuntimeJars = extension.additionalRuntimeJars
 
         if(daemon == null)
             daemon = extension.daemon
