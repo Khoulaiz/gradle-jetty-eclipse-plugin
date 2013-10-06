@@ -1,29 +1,27 @@
-This is work in progress. If it works, I will create a proper release and tell you how to use it. Stay tuned...
-
 # Gradle Jetty Plugin for Jetty based on Eclipse packages
 
 ## Intention
 
-I needed a jetty plugin for gradle for the newer versions of jetty. Because I couldn't find any ready-to-use plugins,
- I started to create one myself. I never hat the intention to create a script-compatible version of the plugin. Instead
- my goal was to create a feature-compatible jetty plugin for the eclipse generation.
+I needed a Jetty plugin for Gradle for the newer versions of Jetty. Because I couldn't find any ready-to-use plugins,
+ I started to create one myself. I never had the intention to create a script-compatible version of the plugin. Instead
+ my goal was to create a feature-compatible Jetty plugin for the Eclipse generation.
 
-I quickly noticed that the original gradle jetty plugin is more or less a plain port of the maven jetty plugin.
- The original jettyRun task is IMHO a hard to maintain jetty hack, because jetty doen't really support a scattered
- webapp. I also think the configuration of the original jettyRun task is not very gradle-like (lots of unnecessary
- double configuration).
+I quickly noticed that the original Gradle Jetty plugin is more or less a plain port of the maven-jetty-plugin.
+ The original `jettyRun` task is IMHO a hard to maintain Jetty hack, because Jetty doesn't really support a scattered
+ webapp. I also think the configuration of the original `jettyRun` task is not very gradle-like (lots of unnecessary
+ double configuration and so on).
 
-So I decided to change a few thinks. I hope, you find this plugin still useful. I've read that the gradle developers
- are working on a new test framework integration, that supports a number of web container. I use the jetty plugin for
- rapid development and because it's easy and fast to use. It has a reasonable default configuration and should work
- for most webapps without any additional configuration.
+So I decided to change a few thinks. I hope, you find this plugin still useful. I've read that the Gradle developers
+ are working on a new test framework integration, that supports a number of different web container. My own reasons to
+ use the Jetty plugin are simple: it is great for rapid development and very fast to setup. It has a reasonable default 
+ configuration and should work for most webapps without any additional configuration.
 
-## Differences to the original jetty plugin
+## Differences to the original Jetty plugin
 
 ### Task names
 
-First of all, I changed the name of the tasks and the plugin from jetty to jettyEclipse. This was necessary, because
- the classes of the original plugin live within the gradle distribution. Even if you don't do `apply 'jetty'` in your
+First of all, I changed the name of the tasks and the plugin from `jetty` to `jettyEclipse`. This was necessary, because
+ the classes of the original plugin live within the Gradle distribution. Even if you don't do `apply 'jetty'` in your
  buildscript, the classes are automatically imported and if task classes only differ in their packages, there will be
  conflicts and strange errors.
 
@@ -34,6 +32,7 @@ I've merged the tasks `jettyRun` and `jettyRunWar`. Now there is only one task c
  to a war task (that produces a war file). See the build.gradle file in the example directory.
 
 While the `jettyEclipseRun` task is running, you can trigger some actions via keyboard:
+
 1. Pressing `ENTER` reloads the webapp
 2. Pressing `r + ENTER` rebuilds and reloads the webapp
 3. Pressing `R + ENTER` rebuilds the webapp (without reloading)
@@ -49,11 +48,11 @@ You can schedule automatic rebuilds every x seconds. Gradle does a fantastic job
 
 If you combine both features, you should be able to change any kind of source file that takes part in the war output.
  The change will trigger a recreation of the war file during the automatic build. A changed war file will either
- automatically reload the webapp or print a message to the console so you can manually reload the webapp.
+ automatically reload the webapp or print a message to the console, so you can manually reload the webapp.
 
 ## Usage
 
-### jettyEclipse
+### Plugin Setup
 
 Your need to add the following lines to your build script:
 
@@ -69,7 +68,9 @@ Your need to add the following lines to your build script:
     }
     apply plugin: 'jettyEclipse'
 
-After that you can configure global settings of the plugin using the `jettyEclipse` extension. The following parameters
+### jettyEclipse
+
+You can configure global settings of the plugin using the `jettyEclipse` extension. The following parameters
  can be set:
 
 | Name                     | Type          | Default       | Purpose
@@ -79,7 +80,7 @@ After that you can configure global settings of the plugin using the `jettyEclip
 | stopKey                  | String        | stop          | Key to provide when stopping jetty via the jettyEclipseStop task
 | warFile                  | File          | -             | War File to use for the web app (if not set, the jettyEclipseRun
 |                          |               |               | task will search for a dependent War task and use its output war)
-| scanIntervalInSeconds    | int           | 5             | scans the war file for changes every x seconds
+| scanIntervalInSeconds    | int           | 5             | scans the war file for changes every x seconds (via lastModified)
 | contextPath              | String        | /             | the context path of the webapp
 | webDefaultXml            | File          | jetty default | jetty default web.xml (applied before web.xml of war)
 | overrideWebXml           | File          | -             | will be applied after the webapp web.xml
@@ -94,7 +95,7 @@ After that you can configure global settings of the plugin using the `jettyEclip
 | requestLog               | File          | -             | NCSA request log of the jetty server
 | passwordFile             | File          | -             | text file containing user database. Will setup Basic
 |                          |               |               | Authenticator with this database. The format of the file is
-|                          |               |               | `user: password[,role]`.
+|                          |               |               | `user: password[,role]`. See example project.
 | additionalRuntimeJars    | File[]        | -             | list of additional jars that will be added to the classpath
 | daemon                   | boolean       | false         | will start the jetty server detached
 
@@ -129,7 +130,7 @@ Credits
 * to the implementors of the build-in jetty plugin of gradle
 * to [chriswk](https://github.com/chriswk) for his [gradle-jetty9-plugin](https://github.com/chriswk/gradle-jetty9-plugin)
   (I did not fork from him to get all the compile problems when upgrading the original jetty gradle plugin,
-   but I took a bunch of solutions from him)
+   and later I changed pretty much but I took a couple of ideas from his project)
 
 License
 -------
