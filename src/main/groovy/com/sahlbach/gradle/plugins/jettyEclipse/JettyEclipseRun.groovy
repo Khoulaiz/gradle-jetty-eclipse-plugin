@@ -452,19 +452,17 @@ class JettyEclipseRun extends DefaultTask {
      */
     void validateConfiguration () {
         if(warFile == null) {
-            // user gave no warfile, try to find one via dependencies
-            def warTasks = project.tasks.withType(War)
-            for (dep in dependsOn) {
-                if(dep instanceof String) {
-                    Task task = project.getTasksByName(dep,false).iterator().next()
-                    if(warTasks.contains(task)) {
-                        War warTask = task as War
-                        warFile = warTask.archivePath
-                        if (rebuildTask == null) {
-                            rebuildTask = warTask
-                        }
-                        break
-                    }
+            List<War> warTasks = []
+            taskDependencies.getDependencies(this).each { dep ->
+                if (dep instanceof War) {
+                    warTasks += dep as War
+                }
+            }
+            if(!warTasks.empty) {
+                War warTask = warTasks.get(0)
+                warFile = warTask.archivePath
+                if (rebuildTask == null) {
+                    rebuildTask = warTask
                 }
             }
         }
