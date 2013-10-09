@@ -139,6 +139,11 @@ class JettyEclipseRun extends DefaultTask {
     Boolean skipAnnotations
 
     /**
+     * Tasks that should be skipped during background builds
+     */
+    Task[] rebuildSkipTasks
+
+    /**
      * The "virtual" webapp created by the plugin.
      */
     JettyEclipsePluginWebAppContext webAppContext
@@ -195,6 +200,9 @@ class JettyEclipseRun extends DefaultTask {
                 ByteArrayOutputStream stdout = new ByteArrayOutputStream()
                 ByteArrayOutputStream stderr = new ByteArrayOutputStream()
                 BuildLauncher launcher = connection.newBuild().forTasks(rebuildTask.path)
+                rebuildSkipTasks.each {
+                    launcher.withArguments('-x',it.name)
+                }
                 launcher.standardOutput = stdout
                 launcher.standardError = stderr
                 launcher.run()
@@ -597,5 +605,8 @@ class JettyEclipseRun extends DefaultTask {
 
         if(daemon == null)
             daemon = extension.daemon
+
+        if(rebuildSkipTasks == null)
+            rebuildSkipTasks = extension.rebuildSkipTasks
     }
 }

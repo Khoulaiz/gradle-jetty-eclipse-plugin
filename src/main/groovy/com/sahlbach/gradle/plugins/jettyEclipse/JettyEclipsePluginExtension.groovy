@@ -86,6 +86,11 @@ class JettyEclipsePluginExtension {
     Task rebuildTask
 
     /**
+     * Tasks that should be skipped during background builds
+     */
+    Task[] rebuildSkipTasks
+
+    /**
      * A NCSA RequestLog to use for the webapp at runtime.
      */
     File requestLog

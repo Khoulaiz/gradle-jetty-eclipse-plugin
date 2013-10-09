@@ -71,6 +71,7 @@ task devWar(type: War) {
 
 // add a jetty eclipse run task for the debug war
 task devJetty(type: JettyEclipseRun, dependsOn: 'devWar') {
+    rebuildSkipTasks = [test]                 // do rebuilds without test task
     rebuildIntervalInSeconds = 10
     automaticReload = true
 }

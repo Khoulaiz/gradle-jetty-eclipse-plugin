@@ -90,6 +90,7 @@ You can configure global settings of the plugin using the `jettyEclipse` extensi
 |                          |               |               | Authenticator with this database. The format of the file is
 |                          |               |               | `user: password[,role]`. See example project.
 | rebuildIntervalInSeconds | int           | -             | > 0: starts background builds every x seconds
+| rebuildSkipTasks         | Task[]        | -             | these tasks will be skipped during rebuild
 | rebuildTask              | Task          | dependent war | the task that is used for the background rebuild
 |                          |               | type task     |
 | requestLog               | File          | -             | NCSA request log of the jetty server
