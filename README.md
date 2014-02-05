@@ -136,6 +136,10 @@ Credits
   (I did not fork from him to get all the compile problems when upgrading the original jetty gradle plugin,
    and later I changed pretty much but I took a couple of ideas from his project)
 
+Download
+--------
+[ ![Download](https://api.bintray.com/packages/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/images/download.png) ](https://bintray.com/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/_latestVersion)
+
 License
 -------
 This plugin is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
