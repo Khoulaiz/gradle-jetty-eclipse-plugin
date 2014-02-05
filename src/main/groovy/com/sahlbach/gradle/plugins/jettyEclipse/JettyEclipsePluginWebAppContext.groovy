@@ -15,31 +15,29 @@
  */
 
 package com.sahlbach.gradle.plugins.jettyEclipse
-
 import org.eclipse.jetty.annotations.AnnotationConfiguration
 import org.eclipse.jetty.plus.webapp.EnvConfiguration
 import org.eclipse.jetty.plus.webapp.PlusConfiguration
 import org.eclipse.jetty.util.log.Log
 import org.eclipse.jetty.util.log.Logger
-import org.eclipse.jetty.webapp.AbstractConfiguration
-import org.eclipse.jetty.webapp.Configuration
-import org.eclipse.jetty.webapp.JettyWebXmlConfiguration
-import org.eclipse.jetty.webapp.WebAppContext
-import org.eclipse.jetty.webapp.WebInfConfiguration
-import org.eclipse.jetty.webapp.WebXmlConfiguration
+import org.eclipse.jetty.webapp.*
 
 class JettyEclipsePluginWebAppContext extends WebAppContext {
     private static final Logger logger = Log.getLogger(WebAppContext.class);
     private List<File> classpathFiles;
     private File       jettyEnvXmlFile;
     private File       webXmlFile;
-    private WebXmlConfiguration      webXmlConfiguration = new WebXmlConfiguration()
     private WebInfConfiguration      webInfConfig        = new WebInfConfiguration()
+    private WebXmlConfiguration      webXmlConfiguration = new WebXmlConfiguration()
+    private MetaInfConfiguration    metaInfConfiguration = new MetaInfConfiguration()
+    private FragmentConfiguration  fragmentConfiguration = new FragmentConfiguration()
     private EnvConfiguration         envConfig           = new EnvConfiguration()
     private PlusConfiguration        plusConfiguration   = new PlusConfiguration()
     private JettyWebXmlConfiguration jettyWebConfig      = new JettyWebXmlConfiguration()
-    private List<AbstractConfiguration> configs          = [webXmlConfiguration,
-                                                            webInfConfig,
+    private List<AbstractConfiguration> configs          = [webInfConfig,
+                                                            webXmlConfiguration,
+                                                            metaInfConfiguration,
+                                                            fragmentConfiguration,
                                                             envConfig,
                                                             plusConfiguration,
                                                             jettyWebConfig] as AbstractConfiguration[]

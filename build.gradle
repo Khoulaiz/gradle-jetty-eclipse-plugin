@@ -18,7 +18,7 @@ def v = [
         guava: '15.0',
         slf4j: '1.6.6',
         servletApi: '2.5',
-        jetty: '9.0.6.v20130930',
+        jetty: '9.1.1.v20140108',
         jdt: '3.8.2.v20130121',
         spock: '0.6-groovy-1.8'
 ]
@@ -54,7 +54,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper, description: 'Gradle Wrapper task') {
-    gradleVersion = '1.8'
+    gradleVersion = '1.10'
 }
 
 compileJava {
@@ -70,13 +70,13 @@ compileJava {
     // on a linux system this would be eg.
     // jdk_1_6_home=/opt/java/64/jdk1.6.0_31
     // jdk_1_6_bootClasspath=/opt/java/64/jdk1.6.0_31/jre/lib/rt.jar
-    def compatibilityVersion = 1.6
+    def compatibilityVersion = 1.7
     sourceCompatibility = compatibilityVersion
     targetCompatibility = compatibilityVersion
-    if(project.hasProperty('jdk_1_6_bootClasspath'))
-        options.bootClasspath = "${jdk_1_6_bootClasspath}"
-    else if(project.hasProperty('jdk_1_6_home'))
-        options.bootClasspath = "${jdk_1_6_home}/jre/lib/rt.jar"
+    if(project.hasProperty('jdk_1_7_bootClasspath'))
+        options.bootClasspath = "${jdk_1_7_bootClasspath}"
+    else if(project.hasProperty('jdk_1_7_home'))
+        options.bootClasspath = "${jdk_1_7_home}/jre/lib/rt.jar"
     logger.info "Compiling using compatibility $compatibilityVersion and bootClasspath ${options.bootClasspath}"
 }
 
@@ -143,9 +143,9 @@ publishing {
             }
         }
     }
-    generatePomFileForMavenGroovyPublication {
-        destination = file("$buildDir/generated-pom.xml")
-    }
+//    generatePomFileForMavenGroovyPublication {
+//        destination = file("$buildDir/generated-pom.xml")
+//    }
 }
 
 task install(dependsOn: 'publishMavenGroovyPublicationToMavenLocal') << {

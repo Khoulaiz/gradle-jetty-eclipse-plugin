@@ -1,7 +1,8 @@
-1.9.1 (not released yet)
+1.9.1
 -----
 * aded ability to turn off annotation scanning
 * added ability to skip tasks during automatic builds
+* added support for FragmentConfiguration and MetaInfConfiguration
 
 1.9.0
 -----
