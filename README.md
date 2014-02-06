@@ -138,7 +138,7 @@ Credits
 
 Download
 --------
-[ ![Download](https://api.bintray.com/packages/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/images/download.png) ](https://bintray.com/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/images/download.png) ](https://bintray.com/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/)
 
 License
 -------
