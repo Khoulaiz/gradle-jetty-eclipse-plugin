@@ -61,7 +61,6 @@ Your need to add the following lines to your build script:
     buildscript {
         repositories {
             jcenter()
-            maven { url = 'http://dl.bintray.com/khoulaiz/gradle-plugins' } // as long as we are not in jcenter
         }
         dependencies {
             classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
