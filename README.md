@@ -59,7 +59,6 @@ Your need to add the following lines to your build script:
     buildscript {
         repositories {
             jcenter()
-            maven { url = 'http://dl.bintray.com/khoulaiz/gradle-plugins' } // as long as we are not in jcenter
         }
         dependencies {
             classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
@@ -133,6 +132,10 @@ Credits
 * to [chriswk](https://github.com/chriswk) for his [gradle-jetty9-plugin](https://github.com/chriswk/gradle-jetty9-plugin)
   (I did not fork from him to get all the compile problems when upgrading the original jetty gradle plugin,
    and later I changed pretty much but I took a couple of ideas from his project)
+
+Download
+--------
+[ ![Download](https://api.bintray.com/packages/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/images/download.png) ](https://bintray.com/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/)
 
 License
 -------
