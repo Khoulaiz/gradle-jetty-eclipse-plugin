@@ -41,6 +41,8 @@ class JettyEclipsePlugin implements Plugin<Project> {
 
         project.plugins.apply(WarPlugin.class)
 
+        project.convention.plugins.put('jettyEclipse', new JettyEclipseConvention())
+
         extension = createExtension()
         configureJettyStart()
         configureJettyStop()

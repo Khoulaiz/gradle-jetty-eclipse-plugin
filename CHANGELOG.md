@@ -1,3 +1,7 @@
+1.9.2 (SNAPSHOT)
+----------------
+* added convention to get rid of import statements in build scripts
+
 1.9.1
 -----
 * aded ability to turn off annotation scanning

@@ -56,8 +56,6 @@ If you combine both features, you should be able to change any kind of source fi
 
 Your need to add the following lines to your build script:
 
-    import com.sahlbach.gradle.plugins.jettyEclipse.*
-
     buildscript {
         repositories {
             jcenter()

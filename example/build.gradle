@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import com.sahlbach.gradle.plugins.jettyEclipse.*
-
 apply plugin: 'war'
 
 version = '1.0-SNAPSHOT'
