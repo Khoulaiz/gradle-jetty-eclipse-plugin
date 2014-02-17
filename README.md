@@ -6,7 +6,7 @@ I needed a Jetty plugin for Gradle for the newer versions of Jetty. Because I co
  I started to create one myself. I never had the intention to create a script-compatible version of the plugin. Instead
  my goal was to create a feature-compatible Jetty plugin for the Eclipse generation.
 
-I quickly noticed that the original Gradle Jetty plugin is more or less a plain port of the maven-jetty-plugin.
+I quickly noticed that [the original Gradle Jetty plugin](http://www.gradle.org/docs/current/userguide/jetty_plugin.html) is more or less a plain port of the maven-jetty-plugin.
  The original `jettyRun` task is IMHO a hard to maintain Jetty hack, because Jetty doesn't really support a scattered
  webapp. I also think the configuration of the original `jettyRun` task is not very gradle-like (lots of unnecessary
  double configuration and so on).
