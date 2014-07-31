@@ -18,7 +18,7 @@ def v = [
         guava: '15.0',
         slf4j: '1.6.6',
         servletApi: '2.5',
-        jetty: '9.1.1.v20140108',
+        jetty: '9.2.2.v20140723',
         jdt: '3.8.2.v20130121',
         spock: '0.6-groovy-1.8'
 ]
@@ -54,7 +54,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper, description: 'Gradle Wrapper task') {
-    gradleVersion = '1.10'
+    gradleVersion = '1.12'
 }
 
 compileJava {
