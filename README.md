@@ -128,6 +128,7 @@ Credits
 Download
 --------
 [ ![Download](https://api.bintray.com/packages/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/images/download.png) ](https://bintray.com/khoulaiz/gradle-plugins/gradle-jetty-eclipse-plugin/)
+[![Build Status](https://travis-ci.org/Khoulaiz/gradle-jetty-eclipse-plugin.svg?branch=master)](https://travis-ci.org/Khoulaiz/gradle-jetty-eclipse-plugin)
 
 License
 -------
