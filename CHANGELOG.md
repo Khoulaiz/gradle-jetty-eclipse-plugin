@@ -1,6 +1,7 @@
-1.9.2 (SNAPSHOT)
-----------------
+1.9.2
+-----
 * added convention to get rid of import statements in build scripts
+* upgrade to new jetty version
 
 1.9.1
 -----
