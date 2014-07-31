@@ -132,5 +132,3 @@ Download
 License
 -------
 This plugin is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
-[ ![Codeship Status for Khoulaiz/gradle-jetty-eclipse-plugin](https://codeship.io/projects/ad859c10-fad1-0131-132b-22fd5e2cab4f/status)](https://codeship.io/projects/29098)
