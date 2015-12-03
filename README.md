@@ -1,3 +1,7 @@
+``` 
+Note: I stopped actively develop this plugin in favour of [Gretty](https://github.com/akhikhl/gretty)
+```
+
 # Gradle Jetty Plugin for Jetty based on Eclipse packages
 
 ## Intention
